@@ -1,28 +1,44 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import backgroundImg from '../assets/images/homepage-background.jpg'
 import { useHistory } from 'react-router-dom'
+import backgroundImg from '../assets/images/homepage-background.jpg'
+import loadingButtonImg from '../assets/images/loading.svg'
+import introVideo from '../assets/videos/intro.mp4'
 
 export const LoginPage = () => {
   const emailRef = useRef()
   const passwordRef = useRef()
+  const videoRef = useRef()
   const { login } = useAuth()
   const history = useHistory()
   const [passwordType, setPasswordType] = useState("password");
+  const [isLoading, setisLoading] = useState(false)
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setisLoading(true)
     try {
-      await login(emailRef.current.value, passwordRef.current.value)
-      history.push('/browse')
+      logIn()
     } catch (err) {
       console.error(err)
+    } finally {
+      setisLoading(false)
     }
   }
 
-  const revealPassword = async () => {
+  const logIn = ()  => {
+    videoRef.current.style.display = 'block'
+    videoRef.current.play()
+    videoRef.current.onended = async () => {
+      await login(emailRef.current.value, passwordRef.current.value)
+      history.push('/browse')
+    }
+  }
 
+
+  const revealPassword = async () => {
     if(passwordType==="password")
     {
      setPasswordType("text")
@@ -33,6 +49,11 @@ export const LoginPage = () => {
 
   return (
     <section className="login-page">
+                <div  className="video-container">
+        <video ref={videoRef} style={{display: 'none'}} playsInline>
+        <source src={introVideo} type="video/mp4" />
+        </video>
+      </div>
       <img className="background-img" src={backgroundImg} alt="background-img" />
       <header>
         <Link to="/">
@@ -59,7 +80,7 @@ export const LoginPage = () => {
             <span onClick={() => revealPassword()}>{passwordType === 'password' ? 'show' : 'hide'}</span>
           </label>
           
-          <button>Sign In</button>
+          <button style={{backgroundColor: isLoading ? '#e509146c' : ''}}>{isLoading ? <img src={loadingButtonImg} alt="loading" /> : 'Sign In'}</button>
           <p>
             New to Netflix? <Link to="/signup">Sign up now</Link>.
           </p>

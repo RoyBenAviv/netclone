@@ -1,4 +1,14 @@
 .login-page {
+    .video-container {
+    video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100vh;
+      z-index: 30;
+    }
+  }
   header {
     height: 10vh;
     .logo {
@@ -92,9 +102,17 @@
       }
         button {
           width: 100%;
+          position: relative;
+          height: 50px;
           font-weight: 700;
           font-family: Arial, Helvetica, sans-serif;
-          @include button(rem(16px), rem(16px), 3px)
+          @include button(rem(16px), rem(16px), 3px);
+          img {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+          }
         }
         p {
           color: $grey;

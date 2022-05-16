@@ -1,5 +1,8 @@
 import React from 'react'
 import addProfileImg from '../assets/images/profiles/plus.png'
+
+
+
 export const WhosWatching = ({ currUser }) => {
   return (
     <section className="whos-watching">
@@ -17,19 +20,19 @@ export const WhosWatching = ({ currUser }) => {
         <h2>Who's Watching?</h2>
         <ul className="profiles-list">
           {currUser.profiles.map((profile) => (
-            <li  key={profile.name}>
-              <img className='profile-image' src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile-image" />
+            <li key={profile.name}>
+              <img className="profile-image" src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile-image" />
               <p>{profile.name}</p>
             </li>
           ))}
-            <li>
-            <div className='add-profile-container'>
-            <img className='add-profile-image' src={addProfileImg} alt="add-profile-image" />
-              </div>
-              <p>Add Profile</p>
-            </li>
+          <li>
+            <div className="add-profile-container">
+              <img className="add-profile-image" src={addProfileImg} alt="add-profile-image" />
+            </div>
+            <p>Add Profile</p>
+          </li>
         </ul>
-        <button className='manage-profiles'>Manage Profiles</button>
+        <button className="manage-profiles">Manage Profiles</button>
       </section>
     </section>
   )
