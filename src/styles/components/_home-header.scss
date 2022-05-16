@@ -1,0 +1,17 @@
+.home-header {
+  padding-block-start: rem(28px);
+  margin: 0 rem(56px);
+  @include flex(row, space-between);
+  .logo {
+    svg {
+      -webkit-font-smoothing: antialiased;
+      path {
+        fill: $red;
+      }
+    }
+  }
+  button {
+    @include button(7px 17px, 1rem, 3px);
+    align-self: flex-start;
+  }
+}

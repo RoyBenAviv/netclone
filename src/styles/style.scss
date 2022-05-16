@@ -1,0 +1,15 @@
+// SETUP
+@import "setup/variables";
+@import "setup/typography";
+@import "setup/functions";
+@import "setup/mixins";
+
+// BASICS
+@import "basics/base";
+
+//CMPS
+@import "components/home-header";
+
+//PAGES
+@import "pages/home-page";
+@import "pages/login-page";
