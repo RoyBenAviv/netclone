@@ -12,9 +12,8 @@ export const LoginPage = () => {
   const videoRef = useRef()
   const { login } = useAuth()
   const history = useHistory()
-  const [passwordType, setPasswordType] = useState("password");
+  const [passwordType, setPasswordType] = useState('password')
   const [isLoading, setisLoading] = useState(false)
-
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -28,7 +27,7 @@ export const LoginPage = () => {
     }
   }
 
-  const logIn = ()  => {
+  const logIn = () => {
     videoRef.current.style.display = 'block'
     videoRef.current.play()
     videoRef.current.onended = async () => {
@@ -37,21 +36,19 @@ export const LoginPage = () => {
     }
   }
 
-
   const revealPassword = async () => {
-    if(passwordType==="password")
-    {
-     setPasswordType("text")
-     return;
+    if (passwordType === 'password') {
+      setPasswordType('text')
+      return
     }
-    setPasswordType("password")
+    setPasswordType('password')
   }
 
   return (
     <section className="login-page">
-                <div  className="video-container">
-        <video ref={videoRef} style={{display: 'none'}} playsInline>
-        <source src={introVideo} type="video/mp4" />
+      <div className="video-container">
+        <video ref={videoRef} style={{ display: 'none' }} playsInline>
+          <source src={introVideo} type="video/mp4" />
         </video>
       </div>
       <img className="background-img" src={backgroundImg} alt="background-img" />
@@ -79,8 +76,8 @@ export const LoginPage = () => {
             <input ref={passwordRef} type={passwordType} />
             <span onClick={() => revealPassword()}>{passwordType === 'password' ? 'show' : 'hide'}</span>
           </label>
-          
-          <button style={{backgroundColor: isLoading ? '#e509146c' : ''}}>{isLoading ? <img src={loadingButtonImg} alt="loading" /> : 'Sign In'}</button>
+
+          <button style={{ backgroundColor: isLoading ? '#e509146c' : '' }}>{isLoading ? <img src={loadingButtonImg} alt="loading" /> : 'Sign In'}</button>
           <p>
             New to Netflix? <Link to="/signup">Sign up now</Link>.
           </p>
@@ -88,7 +85,7 @@ export const LoginPage = () => {
       </div>
       <footer>
         <div>
-        <p>Netflix clone made by Roy Ben Aviv</p>
+          <p>Netflix clone made by Roy Ben Aviv</p>
         </div>
       </footer>
     </section>

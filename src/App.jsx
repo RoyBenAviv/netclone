@@ -10,14 +10,14 @@ import { Redirect } from 'react-router-dom'
 
 function App() {
   
-  const NoUserRoute = (props) => {
+  const PrivateRoute = (props) => {
     const { user } = useAuth()
     return user ? <Route {...props} /> : <Redirect to="/" />
   }
-  const UserRoute = (props) => {
-    const { user } = useAuth()
-    return !user ? <Route {...props} /> : <Redirect to="/browse" />
-  }
+  // const UserRoute = (props) => {
+  //   const { user } = useAuth()
+  //   return !user ? <Route {...props} /> : <Redirect to="/browse" />
+  // }
 
   return (
     
@@ -25,10 +25,10 @@ function App() {
     <Router>
       <AuthProvider>
       <Switch>
-        <UserRoute path="/login" component={LoginPage} />
-        <UserRoute path="/signup" component={SignUpPage} />
-        <NoUserRoute path="/browse" component={BrowsePage} />
-        <UserRoute path="/" component={HomePage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/signup" component={SignUpPage} />
+        <PrivateRoute path="/browse" component={BrowsePage} />
+        <Route path="/" component={HomePage} />
       </Switch>
     </AuthProvider>
     </Router>
