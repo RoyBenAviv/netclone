@@ -10,19 +10,19 @@ import { AuthProvider } from './contexts/AuthContext'
 
 function App() {
   return (
-    <AuthProvider>
-
-    <Router>
+    
     <div className="App">
+    <Router>
+      <AuthProvider>
       <Switch>
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignUpPage} />
         <Route path="/profiles" component={ProfilePage} />
         <Route path="/" component={HomePage} />
       </Switch>
-    </div>
-    </Router>
     </AuthProvider>
+    </Router>
+    </div>
   );
 }
 

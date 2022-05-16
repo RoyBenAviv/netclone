@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
-import { auth } from '../firebase.config'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import { firebaseService } from '../firebase.config'
+import { userService } from '../services/user.service'
 const AuthContext = React.createContext()
 
 export function useAuth() {
@@ -8,26 +9,36 @@ export function useAuth() {
 }
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState()
+const [user, setUser] = useState()
+  const [loading, setLoading] = useState(true)
 
-  function signup(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password)
+  async function signup(email, password, name) {
+    const { user } = await createUserWithEmailAndPassword(firebaseService.auth, email, password)
+    const userToSave = {
+      id: user.uid, 
+      email: user.email,
+      name
+    }
+    userService.save(userToSave)
+  }
+
+  function login(email, password) {
+    return signInWithEmailAndPassword(firebaseService.auth, email, password)
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user)
+    const unsubscribe = onAuthStateChanged(firebaseService.auth, (user) => {
+      setUser(user)
+      setLoading(false)
     })
-    console.log(unsubscribe)
     return unsubscribe
   }, [])
 
   const value = {
-    currentUser,
+    user,
     signup,
+    login,
   }
 
-  return (<AuthContext.Provider value={value}>
-      {children}
-      </AuthContext.Provider>)
+  return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>
 }
