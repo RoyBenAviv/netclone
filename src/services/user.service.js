@@ -1,17 +1,21 @@
-import { firebaseService } from '../firebase.config'
+import { firebaseService } from './firebase.service'
 
 const COLLECTION = 'users'
 
 export const userService = {
+  query,
   save,
-  getById  
+  getById,
 }
 
+async function query() {
+  return await firebaseService.getDocuments(COLLECTION)
+}
 
-async function save(user) {
-  return await firebaseService.addDocument(COLLECTION, user)
+async function save(userId, newUser) {
+  return await firebaseService.addDocument(COLLECTION, userId, newUser)
 }
 
 async function getById(id) {
-    return await firebaseService.getDocument(COLLECTION, id)
-  }
+  return await firebaseService.getDocument(COLLECTION, id)
+}

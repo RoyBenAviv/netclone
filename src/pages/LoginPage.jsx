@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import backgroundImg from '../assets/images/homepage-background.jpg'
@@ -9,16 +9,26 @@ export const LoginPage = () => {
   const passwordRef = useRef()
   const { login } = useAuth()
   const history = useHistory()
+  const [passwordType, setPasswordType] = useState("password");
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     try {
       await login(emailRef.current.value, passwordRef.current.value)
-      history.push('/profiles')
+      history.push('/browse')
     } catch (err) {
       console.error(err)
     }
+  }
+
+  const revealPassword = async () => {
+
+    if(passwordType==="password")
+    {
+     setPasswordType("text")
+     return;
+    }
+    setPasswordType("password")
   }
 
   return (
@@ -45,15 +55,21 @@ export const LoginPage = () => {
           </label>
           <label>
             Password
-            <input ref={passwordRef} type="password" />
+            <input ref={passwordRef} type={passwordType} />
+            <span onClick={() => revealPassword()}>{passwordType === 'password' ? 'show' : 'hide'}</span>
           </label>
+          
           <button>Sign In</button>
           <p>
             New to Netflix? <Link to="/signup">Sign up now</Link>.
           </p>
         </form>
       </div>
-      <footer></footer>
+      <footer>
+        <div>
+        <p>Netflix clone made by Roy Ben Aviv</p>
+        </div>
+      </footer>
     </section>
   )
 }

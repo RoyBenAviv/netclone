@@ -4,21 +4,31 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
 import { LoginPage } from './pages/LoginPage.jsx'
 import { SignUpPage } from './pages/SignUpPage.jsx'
-import { ProfilePage } from './pages/ProfilePage.jsx'
-import { AuthProvider } from './contexts/AuthContext'
-
+import { BrowsePage } from './pages/BrowsePage.jsx'
+import { AuthProvider, useAuth } from './contexts/AuthContext'
+import { Redirect } from 'react-router-dom'
 
 function App() {
+  
+  const NoUserRoute = (props) => {
+    const { user } = useAuth()
+    return user ? <Route {...props} /> : <Redirect to="/" />
+  }
+  const UserRoute = (props) => {
+    const { user } = useAuth()
+    return !user ? <Route {...props} /> : <Redirect to="/browse" />
+  }
+
   return (
     
     <div className="App">
     <Router>
       <AuthProvider>
       <Switch>
-        <Route path="/login" component={LoginPage} />
-        <Route path="/signup" component={SignUpPage} />
-        <Route path="/profiles" component={ProfilePage} />
-        <Route path="/" component={HomePage} />
+        <UserRoute path="/login" component={LoginPage} />
+        <UserRoute path="/signup" component={SignUpPage} />
+        <NoUserRoute path="/browse" component={BrowsePage} />
+        <UserRoute path="/" component={HomePage} />
       </Switch>
     </AuthProvider>
     </Router>

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
-import { firebaseService } from '../firebase.config'
+import { firebaseService } from '../services/firebase.service'
 import { userService } from '../services/user.service'
 const AuthContext = React.createContext()
 
@@ -9,17 +9,21 @@ export function useAuth() {
 }
 
 export const AuthProvider = ({ children }) => {
-const [user, setUser] = useState()
+  const [user, setUser] = useState()
   const [loading, setLoading] = useState(true)
 
-  async function signup(email, password, name) {
+  async function signup(name, email, password) {
     const { user } = await createUserWithEmailAndPassword(firebaseService.auth, email, password)
     const userToSave = {
-      id: user.uid, 
-      email: user.email,
-      name
-    }
-    userService.save(userToSave)
+        email: user.email,
+        profiles: [
+          {
+            name,
+            image: Math.floor(Math.random() * 5) + 1  
+          }
+        ]
+      }
+    userService.save(user.uid, userToSave)
   }
 
   function login(email, password) {

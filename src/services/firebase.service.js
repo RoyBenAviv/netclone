@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
-import { getDoc, getFirestore, doc, addDoc, collection } from 'firebase/firestore'
+import { getDoc, getFirestore, doc, collection, getDocs, setDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -16,6 +16,16 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 const auth = getAuth(app)
 
+const getDocuments = async (collectionName) => {
+  const db = getFirestore(app)
+  var collectionRef = collection(db, collectionName)
+  const querySnapshot = await getDocs(collectionRef)
+  const docs = []
+  querySnapshot.forEach((doc) => {
+    docs.push({ id: doc.id, ...doc.data() })
+  })
+  return docs
+}
 
 const getDocument = async (collectionName, id) => {
   const db = getFirestore(app)
@@ -33,10 +43,10 @@ const getDocument = async (collectionName, id) => {
   }
 }
 
-const addDocument = async (collectionName, document) => {
+const addDocument = async (collectionName, id, document) => {
   const db = getFirestore(app)
   try {
-    const docRef = await addDoc(collection(db, collectionName), document)
+    const docRef = await setDoc(doc(db, collectionName, id), document)
     return docRef
   } catch (err) {
     console.error('Error adding document: ', err)
@@ -45,8 +55,9 @@ const addDocument = async (collectionName, document) => {
 }
 
 export const firebaseService = {
-  getDocument,
-  addDocument,
   db,
-  auth
+  auth,
+  getDocuments,
+  getDocument,
+  addDocument
 }

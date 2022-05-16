@@ -20,7 +20,7 @@ export const SignUpPage = () => {
 
     try {
       await signup(nameRef.current.value, emailRef.current.value, passwordRef.current.value)
-      history.push('/profiles')
+      history.push('/browse')
     } catch (err) {
       console.error(err)
     }
@@ -67,7 +67,11 @@ export const SignUpPage = () => {
           </p>
         </form>
       </div>
-      <footer></footer>
+      <footer>
+        <div>
+        <p>Netflix clone made by Roy Ben Aviv</p>
+        </div>
+      </footer>
     </section>
   )
 }

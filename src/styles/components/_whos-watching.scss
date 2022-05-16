@@ -1,0 +1,113 @@
+.whos-watching {
+  height: 100vh;
+  background-color: #141414;
+  header {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0));
+    padding-inline-start: rem(60px);
+    @include flex(row, space-between);
+    height: 7.257203842049093vh;
+    .logo {
+      svg {
+        -webkit-font-smoothing: antialiased;
+        path {
+          fill: $red;
+        }
+      }
+    }
+  }
+  .profiles {
+    height: 80vh;
+    margin-block-end: rem(310px);
+    @include flex(column);
+    h2 {
+      user-select: none;
+      color: $text;
+      font-size: 3.5vw;
+      font-weight: unset;
+      margin: 0.67em 0;
+      @media (max-width: 800px) {
+        font-size: rem(30px);
+      }
+    }
+    .profiles-list {
+      margin-block-end: rem(22.5px);
+      @include flex;
+      gap: rem(27px);
+      li {
+        cursor: pointer;
+        &:hover {
+          .profile-image {
+            outline: 3px solid white;
+            outline-offset: -4px;
+          }
+          p {
+            color: $text;
+          }
+          .add-profile-container {
+            background-color: white;
+          }
+        }
+        @include flex(column);
+        img, .add-profile-container {
+          height: 10vw;
+          width: 10vw;
+          max-height: 200px;
+          max-width: 200px;
+          min-height: 84px;
+          min-width: 84px;
+          border-radius: 4px;
+        }
+        .profile-image {
+          transition: outline 0.08s;
+        }
+        .add-profile-container {
+          position: relative;
+          transition: background-color 0.08s;
+        }
+        .add-profile-image {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          transform: scale(0.5);
+        }
+        p {
+          @media (min-width: 1666px) {
+            font-size: 24px;
+          }
+          line-height: 1.2em;
+          min-height: 1.8em;
+          color: grey;
+          display: block;
+          text-align: center;
+          font-size: 1.3vw;
+          margin: 0.6em 0;
+          -o-text-overflow: ellipsis;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          transition: color 0.08s;
+          @media (max-width: 800px) {
+            font-size: rem(12px);
+          }
+        }
+      }
+    }
+    .manage-profiles {
+      display: block;
+      margin: 2em 0 1em 0;
+      font-size: 1.2vw;
+      border: 1px solid grey;
+      color: grey;
+      padding: 0.5em 1.5em;
+      letter-spacing: 2px;
+      transition: border-color 0.08s, color 0.08s;
+      cursor: pointer;
+      background-color: transparent;
+      font-size: rem(18px);
+
+      &:hover {
+        border-color: white;
+        color: $text;
+      }
+    }
+  }
+}
