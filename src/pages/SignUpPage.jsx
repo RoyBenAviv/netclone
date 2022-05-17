@@ -1,8 +1,10 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import backgroundImg from '../assets/images/homepage-background.jpg'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import loadingButtonImg from '../assets/images/loading.svg'
+import introVideo from '../assets/videos/intro.mp4'
 
 export const SignUpPage = () => {
   const nameRef = useRef()
@@ -10,24 +12,43 @@ export const SignUpPage = () => {
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
   const history = useHistory()
-
+  const videoRef = useRef()
   const { signup } = useAuth()
+  const [isLoading, setisLoading] = useState(false)
+  const [error, setError] = useState('')
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    if (passwordConfirmRef.current.value !== passwordRef.current.value) return
-
+    setisLoading(true)  
+    if (passwordConfirmRef.current.value !== passwordRef.current.value) return setError('Password do not match')
     try {
+      setError('')
       await signup(nameRef.current.value, emailRef.current.value, passwordRef.current.value)
+      signUp()
+    } catch {
+      setError('Sorry, we failed to create an account. Please try again.')
+    } finally {
+      setisLoading(false)
+    }
+  }
+
+  const signUp = () => {
+    videoRef.current.style.display = 'block'
+    videoRef.current.play()
+    videoRef.current.onended = async () => {
+      
       history.push('/browse')
-    } catch (err) {
-      console.error(err)
     }
   }
 
   return (
     <section className="login-page">
+      <div className="video-container">
+        <video ref={videoRef} style={{ display: 'none' }} playsInline>
+          <source src={introVideo} type="video/mp4" />
+        </video>
+      </div>
       <img className="background-img" src={backgroundImg} alt="background-img" />
       <header>
         <Link to="/">
@@ -44,6 +65,7 @@ export const SignUpPage = () => {
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <h3>Sign Up</h3>
+          {error && <div className='error'>{error}</div>}
           <label>
             Name
             <input type="text" ref={nameRef} />
@@ -61,7 +83,7 @@ export const SignUpPage = () => {
             <input type="password" ref={passwordConfirmRef} />
           </label>
 
-          <button>Sign Up</button>
+          <button style={{ backgroundColor: isLoading ? '#e509146c' : '' }}>{isLoading ? <img src={loadingButtonImg} alt="loading" /> : 'Sign Up'}</button>
           <p>
             Already have an account? <Link to="/login">Login</Link>.
           </p>
@@ -69,7 +91,7 @@ export const SignUpPage = () => {
       </div>
       <footer>
         <div>
-        <p>Netflix clone made by Roy Ben Aviv</p>
+          <p>Netflix clone made by Roy Ben Aviv</p>
         </div>
       </footer>
     </section>

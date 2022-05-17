@@ -1,13 +1,22 @@
-import React from 'react'
-import addProfileImg from '../assets/images/profiles/plus.png'
-import { useHistory } from 'react-router-dom'
+import React, { useRef, useEffect }  from 'react'
+import newProfileImg from '../assets/images/profiles/5.png'
 
 
-export const WhosWatching = ({ currUser }) => {
-  const history = useHistory()
+export const AddProfilePage = () => {
+  const inputRef = useRef();
+    useEffect(() => {
+        inputRef.current.focus();
+    }, [])
+
+    const setProfile = () => {
+      if(!inputRef.current.value) return
+
+      
+
+    }
 
   return (
-    <section className="whos-watching">
+    <section className="add-profile-page">
       <header>
         <div className="logo">
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="92.5" height="25" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 138">
@@ -18,24 +27,19 @@ export const WhosWatching = ({ currUser }) => {
           </svg>
         </div>
       </header>
-      <section className="profiles">
-        <h2>Who's Watching?</h2>
-        <ul className="profiles-list">
-          {currUser.profiles.map((profile) => (
-            <li key={profile.name}>
-              <img className="profile-image" src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile-image" />
-              <p>{profile.name}</p>
-            </li>
-          ))}
-          <li onClick={() => history.push('browse/add')}>
-            <div className="add-profile-container">
-              <img className="add-profile-image" src={addProfileImg} alt="add-profile-image" />
-            </div>
-            <p>Add Profile</p>
-          </li>
-        </ul>
-        <button className="manage-profiles">Manage Profiles</button>
-      </section>
+      <div className="add-profile-wrapper">
+        <div className="add-profile-container">
+          <h2>Add Profile</h2>
+          <h4>Add a profile for another person watching Netflix.</h4>
+          <div className='input-container'>
+            <img src={newProfileImg} alt="new-profile" />
+            <input ref={inputRef} type="text" placeholder="Name" />
+          </div>
+          <div className="actions">
+            <button onClick={() => setProfile()}>Continue</button> <button>Cancel</button>
+          </div>
+        </div>
+      </div>
     </section>
   )
 }

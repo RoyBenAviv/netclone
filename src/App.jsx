@@ -1,10 +1,10 @@
 import './styles/style.scss'
-import './pages/HomePage.jsx'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
-import { LoginPage } from './pages/LoginPage.jsx'
-import { SignUpPage } from './pages/SignUpPage.jsx'
-import { BrowsePage } from './pages/BrowsePage.jsx'
+import { LoginPage } from './pages/LoginPage'
+import { SignUpPage } from './pages/SignUpPage'
+import { BrowsePage } from './pages/BrowsePage'
+import { AddProfilePage } from './pages/AddProfilePage'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { Redirect } from 'react-router-dom'
 
@@ -14,10 +14,6 @@ function App() {
     const { user } = useAuth()
     return user ? <Route {...props} /> : <Redirect to="/" />
   }
-  // const UserRoute = (props) => {
-  //   const { user } = useAuth()
-  //   return !user ? <Route {...props} /> : <Redirect to="/browse" />
-  // }
 
   return (
     
@@ -27,6 +23,7 @@ function App() {
       <Switch>
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignUpPage} />
+        <PrivateRoute path="/browse/add" component={AddProfilePage} />
         <PrivateRoute path="/browse" component={BrowsePage} />
         <Route path="/" component={HomePage} />
       </Switch>

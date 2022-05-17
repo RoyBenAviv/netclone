@@ -1,15 +1,48 @@
 @mixin flex($direction: row, $justify: center, $align: center) {
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $justify;
-    align-items: $align;
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
 }
 
 @mixin button($padding, $fontsize, $border-radius: 0) {
+  color: $text;
+  background-color: $red;
+  padding: $padding;
+  font-size: $fontsize;
+  border-radius: $border-radius;
+  border: none;
+}
+
+@mixin black-button() {
+  display: block;
+  margin: 2em 0 1em 0;
+  font-size: 1.2vw;
+  border: 1px solid grey;
+  color: grey;
+  padding: 0.5em 1.5em;
+  letter-spacing: 2px;
+  transition: border-color 0.08s, color 0.08s;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: rem(18px);
+  &:hover {
+    border-color: white;
     color: $text;
-    background-color: $red;
-    padding: $padding;
-    font-size: $fontsize;
-    border-radius: $border-radius;
-    border: none;
+  }
+}
+
+@mixin header() {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0));
+  padding-inline-start: rem(60px);
+  @include flex(row, space-between);
+  height: 7.257203842049093vh;
+  .logo {
+    svg {
+      -webkit-font-smoothing: antialiased;
+      path {
+        fill: $red;
+      }
+    }
+  }
 }

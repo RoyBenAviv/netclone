@@ -14,14 +14,17 @@ export const LoginPage = () => {
   const history = useHistory()
   const [passwordType, setPasswordType] = useState('password')
   const [isLoading, setisLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setisLoading(true)
     try {
+      setError('')
+      await login(emailRef.current.value, passwordRef.current.value)
       logIn()
-    } catch (err) {
-      console.error(err)
+    } catch {
+      setError('Sorry, we failed to login. Please try again.')
     } finally {
       setisLoading(false)
     }
@@ -31,7 +34,6 @@ export const LoginPage = () => {
     videoRef.current.style.display = 'block'
     videoRef.current.play()
     videoRef.current.onended = async () => {
-      await login(emailRef.current.value, passwordRef.current.value)
       history.push('/browse')
     }
   }
@@ -67,6 +69,7 @@ export const LoginPage = () => {
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <h3>Sign In</h3>
+          {error && <div className='error'>{error}</div>}
           <label>
             Email
             <input ref={emailRef} type="email" />
