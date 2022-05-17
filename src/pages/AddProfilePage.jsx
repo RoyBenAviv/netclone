@@ -1,19 +1,40 @@
-import React, { useRef, useEffect }  from 'react'
+import React, { useRef, useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import newProfileImg from '../assets/images/profiles/5.png'
-
+import { useAuth } from '../contexts/AuthContext'
+import { userService } from '../services/user.service'
 
 export const AddProfilePage = () => {
-  const inputRef = useRef();
-    useEffect(() => {
-        inputRef.current.focus();
-    }, [])
+  const { user } = useAuth()
+  const history = useHistory()
+  const inputRef = useRef()
+  const [error, setError] = useState('')
 
-    const setProfile = () => {
-      if(!inputRef.current.value) return
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
 
-      
-
+  const setProfile = () => {
+    if (!inputRef.current.value) {
+      setError('Please enter a name')
+      inputRef.current.style.border = '1px solid #e50914'
+      return
     }
+    return user.profiles.forEach((profile) => {
+      if (inputRef.current.value === profile.name) {
+        inputRef.current.style.border = '1px solid #e50914'
+        setError('Sorry, something went wrong. Please try again.')
+        return
+      }
+      user.profiles.push({
+        image: 5,
+        name: inputRef.current.value,
+      })
+      userService.save(null, user)
+      setError('')
+      history.push('/browse')
+    })
+  }
 
   return (
     <section className="add-profile-page">
@@ -31,12 +52,15 @@ export const AddProfilePage = () => {
         <div className="add-profile-container">
           <h2>Add Profile</h2>
           <h4>Add a profile for another person watching Netflix.</h4>
-          <div className='input-container'>
+          <div className="new-profile">
             <img src={newProfileImg} alt="new-profile" />
-            <input ref={inputRef} type="text" placeholder="Name" />
+            <div className="input-container">
+              <input ref={inputRef} type="text" placeholder="Name" />
+              {error && <span>{error}</span>}
+            </div>
           </div>
           <div className="actions">
-            <button onClick={() => setProfile()}>Continue</button> <button>Cancel</button>
+            <button onClick={() => setProfile()}>Continue</button> <button onClick={() => history.push('/browse')}>Cancel</button>
           </div>
         </div>
       </div>
