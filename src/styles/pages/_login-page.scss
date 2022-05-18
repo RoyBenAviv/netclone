@@ -1,19 +1,5 @@
 .login-page {
     position: relative;
-    overflow: hidden;
-    .video-container {
-    video {
-      transform: translateX(-50%) translateY(-50%);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      z-index: 30;
-    }
-  }
   .error {
     margin-block-end: rem(20px);
     padding: rem(10px) rem(20px);

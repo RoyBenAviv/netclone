@@ -12,9 +12,16 @@
 @import "components/home-header";
 @import "components/whos-watching";
 @import "components/edit-profile";
+@import "components/watch-header";
+@import "components/watch-hero";
 
 //PAGES
 @import "pages/home-page";
 @import "pages/login-page";
 @import "pages/add-profile-page";
 @import "pages/manage-profiles-page";
+@import "pages/browse-watch-page";
+
+//LOADING
+@import "components/loading-profile";
+@import "components/video-intro-player";

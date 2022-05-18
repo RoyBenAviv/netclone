@@ -1,17 +1,4 @@
 .home-page {
-  .video-container {
-    video {
-      transform: translateX(-50%) translateY(-50%);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      z-index: 30;
-    }
-  }
   .hero {
     position: relative;
     width: 100%;
@@ -50,9 +37,14 @@
         font-size: 1.2rem;
       }
       button {
+        min-width: 305px;
+        min-height: 68px;
         margin-block-start: rem(20px);
         @include button(rem(15px) rem(30px), 1.875rem, 3px);
         @include flex;
+        img {
+          width: 35px;
+        }
         gap: rem(10px);
         &:hover {
           background-color: #f40612;

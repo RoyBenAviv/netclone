@@ -1,0 +1,7 @@
+.video-intro-player {
+    height: 100vh;
+    .video-container {
+        @include video;
+      }
+}
+

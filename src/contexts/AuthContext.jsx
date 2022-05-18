@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
 import { firebaseService } from '../services/firebase.service'
 import { userService } from '../services/user.service'
+import { utilService } from '../services/util.service'
 const AuthContext = React.createContext()
 
 export function useAuth() {
@@ -14,11 +15,11 @@ export const AuthProvider = ({ children }) => {
 
   async function signup(name, email, password) {
     const { user } = await createUserWithEmailAndPassword(firebaseService.auth, email, password)
-    console.log('user',user);
     const userToSave = {
         email: user.email,
         profiles: [
           {
+            id: utilService.makeId(),
             name,
             image: Math.floor(Math.random() * 6) + 1  
           }

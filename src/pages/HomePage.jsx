@@ -1,49 +1,51 @@
-import React, { useRef } from 'react'
-import { HomeHeader } from '../components/HomeHeader.jsx'
+import React, { useRef, useState } from 'react'
+import { HomeHeader } from '../components/HomeHeader'
+import { VideoIntroPlayer } from '../components/VideoIntroPlayer'
 import tvImg from '../assets/images/tv.png'
 import deviceImg from '../assets/images/device-pile.png'
 import mobileImg from '../assets/images/mobile.jpg'
 import downloadIcon from '../assets/images/download-icon.gif'
-import introVideo from '../assets/videos/intro.mp4'
-import { useHistory } from 'react-router-dom'
+import loadingButtonImg from '../assets/images/loading.svg'
 import { useAuth } from '../contexts/AuthContext.jsx'
 
 export const HomePage = () => {
   const { login } = useAuth()
-  const videoRef = useRef()
-  const history = useHistory()
+  const mainRef = useRef()
+  const [isLoading, setisLoading] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const guestLogin = async () => {
+    setisLoading(true) 
     try {
       await login('guest@gmail.com', 'guest123')
-      videoRef.current.style.display = 'block'
-      videoRef.current.play()
-      videoRef.current.onended = async () => {
-        history.push('/browse')
-      }
+      setIsLoggedIn(true)
     } catch (err) {
       console.error(err)
+    } finally {
+      setisLoading(false)
     }
   }
 
+  if (isLoggedIn) return <VideoIntroPlayer />
   return (
-    <main className="home-page">
-      <div className="video-container">
-        <video ref={videoRef} style={{ display: 'none' }} playsInline>
-          <source src={introVideo} type="video/mp4" />
-        </video>
-      </div>
+    <main ref={mainRef} className="home-page">
       <section className="hero">
         <HomeHeader />
         <div className="hero-inside">
           <h1>Unlimited movies, TV shows, and more.</h1>
           <h2>Watch anywhere. Cancel anytime.</h2>
           <h3>Ready to watch? You can start as a guest without signing up.</h3>
-          <button onClick={() => guestLogin()}>
-            Start as a guest
-            <svg width="25" height="25" viewBox="0 0 6 12" xmlns="http://www.w3.org/2000/svg">
-              <path d="M.61 1.312l.78-.624L5.64 6l-4.25 5.312-.78-.624L4.36 6z" fill="#ffffff" fillRule="evenodd"></path>
-            </svg>
+          <button style={{ backgroundColor: isLoading ? '#e509146c' : '' }} onClick={() => guestLogin()}>
+            {isLoading ? (
+              <img src={loadingButtonImg} alt="loading" />
+            ) : (
+              <>
+                Start as a guest
+                <svg width="25" height="25" viewBox="0 0 6 12" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M.61 1.312l.78-.624L5.64 6l-4.25 5.312-.78-.624L4.36 6z" fill="#ffffff" fillRule="evenodd"></path>
+                </svg>
+              </>
+            )}
           </button>
         </div>
       </section>

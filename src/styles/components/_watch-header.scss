@@ -1,0 +1,32 @@
+.watch-header {
+        @include header;
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+        .left-header {
+            @include flex;
+            gap: rem(45px);
+            nav {
+                @include flex;
+                gap: rem(20px);
+                a {
+                    cursor: pointer;
+                    transition: color 0.3s ease-in-out;
+                    font-size: rem(14px);
+                    &:hover {
+                        color: #b3b3b3;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+        .right-header {
+            @include flex;
+            gap: rem(20px);
+            .profile-image {
+                width: 32px;
+                height: 32px;
+                border-radius: 4px;
+            }
+        }
+}

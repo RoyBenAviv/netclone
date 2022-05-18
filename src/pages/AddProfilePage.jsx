@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import newProfileImg from '../assets/images/profiles/5.png'
 import { useAuth } from '../contexts/AuthContext'
 import { userService } from '../services/user.service'
+import { utilService } from '../services/util.service'
 
 export const AddProfilePage = () => {
   const { user } = useAuth()
@@ -28,6 +29,7 @@ export const AddProfilePage = () => {
         return
       }
       user.profiles.push({
+        id: utilService.makeId(),
         image: 5,
         name: inputRef.current.value,
       })

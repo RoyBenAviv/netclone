@@ -4,12 +4,12 @@ import { HomePage } from './pages/HomePage'
 import { LoginPage } from './pages/LoginPage'
 import { SignUpPage } from './pages/SignUpPage'
 import { BrowsePage } from './pages/BrowsePage'
+import { BrowseWatchPage } from './pages/BrowseWatchPage'
 import { AddProfilePage } from './pages/AddProfilePage'
-import { ManageProfiles } from './pages/ManageProfiles.jsx'
+import { ManageProfiles } from './pages/ManageProfiles'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { Redirect } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import { useLocation } from 'react-router-dom'
 
 const PrivateRoute = (props) => {
   const { user } = useAuth()
@@ -28,6 +28,7 @@ export default function App() {
                   <Route path="/login" component={LoginPage} />
                   <Route path="/signup" component={SignUpPage} />
                   <PrivateRoute path="/browse/add" component={AddProfilePage} />
+                  <PrivateRoute path="/browse/:id" component={BrowseWatchPage} />
                   <PrivateRoute path="/browse" component={BrowsePage} />
                   <PrivateRoute path="/ManageProfiles" component={ManageProfiles} />
                   <Route path="/" component={HomePage} />

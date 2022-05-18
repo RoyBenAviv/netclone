@@ -1,20 +1,18 @@
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
-import { useHistory } from 'react-router-dom'
 import backgroundImg from '../assets/images/homepage-background.jpg'
 import loadingButtonImg from '../assets/images/loading.svg'
-import introVideo from '../assets/videos/intro.mp4'
+import { VideoIntroPlayer } from '../components/VideoIntroPlayer'
 
 export const LoginPage = () => {
   const emailRef = useRef()
   const passwordRef = useRef()
-  const videoRef = useRef()
   const { login } = useAuth()
-  const history = useHistory()
   const [passwordType, setPasswordType] = useState('password')
   const [isLoading, setisLoading] = useState(false)
   const [error, setError] = useState('')
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -22,19 +20,11 @@ export const LoginPage = () => {
     try {
       setError('')
       await login(emailRef.current.value, passwordRef.current.value)
-      logIn()
+      setIsLoggedIn(true)
     } catch {
       setError('Sorry, we failed to login. Please try again.')
     } finally {
       setisLoading(false)
-    }
-  }
-
-  const logIn = () => {
-    videoRef.current.style.display = 'block'
-    videoRef.current.play()
-    videoRef.current.onended = async () => {
-      history.push('/browse')
     }
   }
 
@@ -46,13 +36,9 @@ export const LoginPage = () => {
     setPasswordType('password')
   }
 
+  if(isLoggedIn) return <VideoIntroPlayer />
   return (
     <section className="login-page">
-      <div className="video-container">
-        <video ref={videoRef} style={{ display: 'none' }} playsInline>
-          <source src={introVideo} type="video/mp4" />
-        </video>
-      </div>
       <img className="background-img" src={backgroundImg} alt="background-img" />
       <header>
         <Link to="/">

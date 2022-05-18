@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import addProfileImg from '../assets/images/profiles/plus.png'
 import { useHistory } from 'react-router-dom'
+import { LoadingProfile } from './LoadingProfile.jsx'
+import { Link } from 'react-router-dom'
 
 
 export const WhosWatching = ({ user }) => {
   const history = useHistory()
+  const [loadingProfile, setLoadingProfile] = useState(null)
+  
+  const onProfileChoose = (profile) => {
+    setLoadingProfile(profile)
+    setTimeout(() => {
+      setLoadingProfile(null)
+      history.push(`/browse/${profile.id}`)
+    }, 2400)
 
+  }
+
+  if (loadingProfile) return <LoadingProfile profile={loadingProfile} />  
   return (
     <section className="whos-watching">
+      <Link to={`/browse/${user.profiles[0].id}`}>
       <header>
         <div className="logo">
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="92.5" height="25" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 138">
@@ -18,11 +32,12 @@ export const WhosWatching = ({ user }) => {
           </svg>
         </div>
       </header>
+      </Link>
       <section className="profiles">
         <h2>Who's Watching?</h2>
         <ul className="profiles-list">
           {user.profiles.map((profile) => (
-            <li key={profile.name}>
+            <li onClick={() => onProfileChoose(profile)} key={profile.name}>
               <img className="profile-image" src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile-image" />
               <p>{profile.name}</p>
             </li>
@@ -34,7 +49,9 @@ export const WhosWatching = ({ user }) => {
             <p>Add Profile</p>
           </li>
         </ul>
-        <button onClick={() => history.push('/ManageProfiles')} className="manage-profiles-button">Manage Profiles</button>
+        <button onClick={() => history.push('/ManageProfiles')} className="manage-profiles-button">
+          Manage Profiles
+        </button>
       </section>
     </section>
   )

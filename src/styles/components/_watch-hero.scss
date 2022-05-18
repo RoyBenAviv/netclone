@@ -1,0 +1,51 @@
+.watch-hero {
+    padding: 0 rem(60px);
+    position: relative;
+    height: 56vw;
+    .hero-opacity {
+        background: linear-gradient(77deg,rgba(0,0,0,.6) 0,rgba(0,0,0,0) 85%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 26.09%;
+        bottom: 0;
+        opacity: 1;
+        transition: opacity .5s;
+    }
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 56vw;
+        content: '';
+        background: url('../../assets/images/hero/vikings.webp');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        filter: brightness(90%);
+        z-index: -1;
+      }
+      .inner-hero {
+
+        position: absolute;
+        top: 0;
+        top: 35%;
+        left: 4%;
+        width: 36%;
+        z-index: 10;
+        img, p {
+            user-select: none;
+        }
+        img {
+            min-height: 13.2vw;
+            position: relative;
+            margin-bottom: 1.2vw;        
+        }
+        p {
+            line-height: normal;
+            width: 100%;
+            font-size: 1.2vw;
+            text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
+        }
+      }
+}

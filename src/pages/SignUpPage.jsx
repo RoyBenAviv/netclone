@@ -2,21 +2,18 @@ import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import backgroundImg from '../assets/images/homepage-background.jpg'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import loadingButtonImg from '../assets/images/loading.svg'
-import introVideo from '../assets/videos/intro.mp4'
+import { VideoIntroPlayer } from '../components/VideoIntroPlayer'
 
 export const SignUpPage = () => {
   const nameRef = useRef()
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
-  const history = useHistory()
-  const videoRef = useRef()
   const { signup } = useAuth()
   const [isLoading, setisLoading] = useState(false)
   const [error, setError] = useState('')
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,7 +22,7 @@ export const SignUpPage = () => {
     try {
       setError('')
       await signup(nameRef.current.value, emailRef.current.value, passwordRef.current.value)
-      signUp()
+      setIsLoggedIn(true)
     } catch(err) {
       setError('Sorry, we failed to create an account. Please try again.')
       console.error(err)
@@ -34,22 +31,9 @@ export const SignUpPage = () => {
     }
   }
 
-  const signUp = () => {
-    videoRef.current.style.display = 'block'
-    videoRef.current.play()
-    videoRef.current.onended = async () => {
-      
-      history.push('/browse')
-    }
-  }
-
+  if(isLoggedIn) return <VideoIntroPlayer />
   return (
     <section className="login-page">
-      <div className="video-container">
-        <video ref={videoRef} style={{ display: 'none' }} playsInline>
-          <source src={introVideo} type="video/mp4" />
-        </video>
-      </div>
       <img className="background-img" src={backgroundImg} alt="background-img" />
       <header>
         <Link to="/">
