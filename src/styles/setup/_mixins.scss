@@ -32,6 +32,24 @@
   }
 }
 
+@mixin white-button() {
+  display: block;
+  letter-spacing: 2px;
+  padding: 0.5em 1.5em;
+  font-size: 1.2vw;
+  @media (max-width: 800px) {
+    font-size: rem(13px);
+  }
+  background-color: white;
+  font-weight: 700;
+  color: black;
+  transition: all 0.08s;
+  &:hover {
+      background-color: red;
+      color: $text;
+  }
+}
+
 @mixin header() {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0));
   padding-inline-start: rem(60px);

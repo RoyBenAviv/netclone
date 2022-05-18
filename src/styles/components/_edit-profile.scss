@@ -1,0 +1,101 @@
+.edit-profile {
+  background-color: $background2;
+  height: 100vh;
+  header {
+    @include header();
+  }
+  .edit-profile-wrapper {
+    @include flex(column);
+    .edit-profile-container {
+      h2 {
+        font-size: 4vw;
+        user-select: none;
+        @media (max-width: 800px) {
+          font-size: rem(40px);
+        }
+      }
+      .profile {
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #333;
+        padding: 2em 0;
+        @include flex(row, center, flex-start);
+        gap: 1.5vw;
+        .image-wrapper {
+          position: relative;
+          img {
+            user-select: none;
+            height: 8vw;
+            width: 8vw;
+            max-height: 180px;
+            max-width: 180px;
+            min-height: 80px;
+            min-width: 80px;
+            border-radius: 4px;
+            transition: width 0.5s 0.5s, height 0.5s 0.5s;
+          }
+          span {
+            position: absolute;
+            cursor: pointer;
+            bottom: 7%;
+            left: 7%;
+            border: none;
+            svg {
+              background-color: rgba(0, 0, 0, 0.7);
+              filter: drop-shadow(1px 1px 2px #000);
+              width: 2rem;
+              height: 2rem;
+              max-width: 45px;
+              max-height: 45px;
+              border-radius: 5rem;
+            }
+          }
+        }
+        .input-container {
+          @include flex(column);
+          input {
+            width: 18em;
+            height: 2em;
+            background: #666;
+            border: 1px solid transparent;
+            margin: 0 0.8em 0 0;
+            padding: 0.2em 0.6em;
+            color: #fff;
+            font-size: 1.3vw;
+            box-sizing: border-box;
+            text-indent: 0.1vw;
+            &:focus {
+              outline: none;
+            }
+            @media (max-width: 1200px) {
+              width: 300px;
+              height: 25px;
+              font-size: rem(16px);
+              margin-inline-start: rem(20px);
+            }
+          }
+        }
+      }
+      .actions {
+        margin-block-start: rem(26px);
+        @include flex(row, flex-start, flex-start);
+        gap: rem(20px);
+        button {
+          &:nth-child(1) {
+            @include white-button;
+          }
+          &:nth-child(2),
+          &:nth-child(3) {
+            @include black-button;
+            margin: 0;
+            letter-spacing: 2px;
+            padding: 0.5em 1.5em;
+            font-size: 1.2vw;
+            @media (max-width: 800px) {
+              font-size: rem(13px);
+            }
+          }
+        }
+      }
+    }
+  }
+}

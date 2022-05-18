@@ -12,8 +12,12 @@ async function query() {
   return await firebaseService.getDocuments(COLLECTION)
 }
 
-async function save(userId, newUser) {
-  return await firebaseService.addDocument(COLLECTION, userId, newUser)
+async function save(userId, user) {
+  if (user.id) {
+    return await firebaseService.saveDocument(COLLECTION, user, user.id)
+  } else {
+    return await firebaseService.addDocument(COLLECTION, userId, user)
+  }
 }
 
 async function getById(id) {

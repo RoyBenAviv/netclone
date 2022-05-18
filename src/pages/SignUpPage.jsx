@@ -26,8 +26,9 @@ export const SignUpPage = () => {
       setError('')
       await signup(nameRef.current.value, emailRef.current.value, passwordRef.current.value)
       signUp()
-    } catch {
+    } catch(err) {
       setError('Sorry, we failed to create an account. Please try again.')
+      console.error(err)
     } finally {
       setisLoading(false)
     }

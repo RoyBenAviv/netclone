@@ -3,6 +3,7 @@
 @import "setup/typography";
 @import "setup/functions";
 @import "setup/mixins";
+@import "setup/animations";
 
 // BASICS
 @import "basics/base";
@@ -10,8 +11,10 @@
 //CMPS
 @import "components/home-header";
 @import "components/whos-watching";
+@import "components/edit-profile";
 
 //PAGES
 @import "pages/home-page";
 @import "pages/login-page";
 @import "pages/add-profile-page";
+@import "pages/manage-profiles-page";

@@ -14,16 +14,17 @@ export const AuthProvider = ({ children }) => {
 
   async function signup(name, email, password) {
     const { user } = await createUserWithEmailAndPassword(firebaseService.auth, email, password)
+    console.log('user',user);
     const userToSave = {
         email: user.email,
         profiles: [
           {
             name,
-            image: Math.floor(Math.random() * 5) + 1  
+            image: Math.floor(Math.random() * 6) + 1  
           }
         ]
       }
-    userService.save(user.uid, userToSave)
+   userService.save(user.uid, userToSave)
   }
 
   function login(email, password) {
@@ -31,8 +32,11 @@ export const AuthProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(firebaseService.auth, (user) => {
-      setUser(user)
+    const unsubscribe = onAuthStateChanged (firebaseService.auth, async (user) => {
+      if(user) {
+        const currUser = await userService.getById(user.uid)
+        setUser(currUser)
+      }
       setLoading(false)
     })
     return unsubscribe

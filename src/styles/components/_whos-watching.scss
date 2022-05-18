@@ -1,6 +1,6 @@
 .whos-watching {
   height: 100vh;
-  background-color: #141414;
+  background-color: $background2;
   header {
     @include header();
   }
@@ -80,7 +80,7 @@
         }
       }
     }
-    .manage-profiles {
+    .manage-profiles-button {
         @include black-button();
     }
   }

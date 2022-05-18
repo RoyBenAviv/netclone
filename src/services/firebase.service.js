@@ -54,10 +54,17 @@ const addDocument = async (collectionName, id, document) => {
   }
 }
 
+async function saveDocument(collectionName, document, id) {
+  const db = getFirestore(app)
+  const newTaskRef = doc(db, collectionName, id)
+  await setDoc(newTaskRef, document)
+}
+
 export const firebaseService = {
   db,
   auth,
   getDocuments,
   getDocument,
-  addDocument
+  addDocument,
+  saveDocument,
 }

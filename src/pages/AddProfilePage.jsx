@@ -12,6 +12,7 @@ export const AddProfilePage = () => {
 
   useEffect(() => {
     inputRef.current.focus()
+    
   }, [])
 
   const setProfile = () => {
@@ -20,7 +21,7 @@ export const AddProfilePage = () => {
       inputRef.current.style.border = '1px solid #e50914'
       return
     }
-    return user.profiles.forEach((profile) => {
+     user.profiles.forEach((profile) => {
       if (inputRef.current.value === profile.name) {
         inputRef.current.style.border = '1px solid #e50914'
         setError('Sorry, something went wrong. Please try again.')
@@ -31,6 +32,7 @@ export const AddProfilePage = () => {
         name: inputRef.current.value,
       })
       userService.save(null, user)
+      console.log('hi')
       setError('')
       history.push('/browse')
     })
