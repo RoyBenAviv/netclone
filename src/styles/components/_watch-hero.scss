@@ -1,7 +1,12 @@
 .watch-hero {
-    padding: 0 rem(60px);
+    @include main-layout;
     position: relative;
+    background: url('../../assets/images/hero/vikings.webp');
+    width: 100vw;
+    filter: brightness(90%);
     height: 56vw;
+    background-repeat: no-repeat;
+    background-size: 100%;
     .hero-opacity {
         background: linear-gradient(77deg,rgba(0,0,0,.6) 0,rgba(0,0,0,0) 85%);
         position: absolute;
@@ -12,21 +17,7 @@
         opacity: 1;
         transition: opacity .5s;
     }
-    &::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 56vw;
-        content: '';
-        background: url('../../assets/images/hero/vikings.webp');
-        background-repeat: no-repeat;
-        background-size: 100%;
-        filter: brightness(90%);
-        z-index: -1;
-      }
       .inner-hero {
-
         position: absolute;
         top: 0;
         top: 35%;

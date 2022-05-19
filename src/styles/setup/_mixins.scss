@@ -65,7 +65,7 @@
 
 @mixin header() {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0));
-  padding: 0 rem(60px);
+  @include main-layout;
   @include flex(row, space-between);
   height: 7.257203842049093vh;
   .logo {
@@ -76,4 +76,8 @@
       }
     }
   }
+}
+
+@mixin main-layout {
+  padding: 0 rem(60px);
 }

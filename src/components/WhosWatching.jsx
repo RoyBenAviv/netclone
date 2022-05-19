@@ -34,7 +34,7 @@ export const WhosWatching = ({ user }) => {
       </header>
       </Link>
       <section className="profiles">
-        <h2>Who's Watching?</h2>
+        <h2>Who's watching?</h2>
         <ul className="profiles-list">
           {user.profiles.map((profile) => (
             <li onClick={() => onProfileChoose(profile)} key={profile.name}>
