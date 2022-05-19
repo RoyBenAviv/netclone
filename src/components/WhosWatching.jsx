@@ -14,7 +14,7 @@ export const WhosWatching = ({ user }) => {
     setTimeout(() => {
       setLoadingProfile(null)
       history.push(`/browse/${profile.id}`)
-    }, 2400)
+    }, 1400)
 
   }
 

@@ -80,4 +80,7 @@
 
 @mixin main-layout {
   padding: 0 rem(60px);
+  @media (max-width: 800px) {
+    padding: 0 rem(20px);
+  }
 }

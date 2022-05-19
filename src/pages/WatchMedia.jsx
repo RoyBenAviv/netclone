@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { LoadingProfile } from '../components/LoadingProfile'
 import { movieService } from '../services/movies.service'
 
+
 export const WatchMedia = ({ match }) => {
   const [movie, setMovie] = useState()
 
@@ -17,10 +18,18 @@ export const WatchMedia = ({ match }) => {
 
   if (!movie) return <LoadingProfile />
   return (
-    <section>
-      <video autoPlay playsInline muted loop>
-        <source src={movie.url} type="video/mp4" />
-      </video>
+    <section className='watch-media'>
+      <div className='video-container'>
+      <div className='video-controls'>
+        <div className="timeline">
+        </div>
+        <div className='controls'>
+          {/* <button className='play-pause'>Play</button> */}
+          
+        </div>
+      </div>
+      <video autoPlay playsInline loop src={movie.url}></video>
+      </div>
     </section>
   )
 }

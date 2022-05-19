@@ -17,18 +17,24 @@ export const TVCarousel = ({ movies, name }) => {
         slidesPerView={6}
         spaceBetween={8}
         slidesPerGroup={3}
+        allowSlidePrev={false}
         breakpoints={{
-          400: {
-            width: 400,
-            slidePerView: 2,
+          0: {
+            width: 1000,
+            slidePerView: 3,
+          },
+          420: {
+            width: 800,
+            slidePerView: 3,
+            spaceBetween: 2
           },
           768: {
-            width: 768,
+            width: 968,
             slidesPerView: 4,
           },
           1200: {
-            width: 1200,
-            slidesPerView: 5,
+            width: 1800,
+            slidesPerView: 6,
           }
         }}
         loop={true}
