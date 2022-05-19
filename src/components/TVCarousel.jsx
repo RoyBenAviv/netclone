@@ -4,10 +4,15 @@ import { Navigation } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
+import { useHistory } from 'react-router-dom'
 export const TVCarousel = ({ movies, name }) => {
+
+  const history = useHistory()
+
   return (
     <section className="tv-carousel">
       <h2>{name}</h2>
+
       <Swiper
         slidesPerView={6}
         spaceBetween={8}
@@ -22,7 +27,7 @@ export const TVCarousel = ({ movies, name }) => {
         className="mySwiper"
       >
         {movies.map((movie) => (
-          <SwiperSlide key={movie.id}>
+          <SwiperSlide onClick={() => history.push(`/watch/${movie.id}`)} key={movie.id} >
             <img src={require(`../assets/images/movies/${movie.images.small}.jpg`)} alt="movie-image" />
           </SwiperSlide>
         ))}

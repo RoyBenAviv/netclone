@@ -7,6 +7,7 @@ import { BrowsePage } from './pages/BrowsePage'
 import { BrowseWatchPage } from './pages/BrowseWatchPage'
 import { AddProfilePage } from './pages/AddProfilePage'
 import { ManageProfiles } from './pages/ManageProfiles'
+import { WatchMedia } from './pages/WatchMedia'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { Redirect } from 'react-router-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
@@ -30,6 +31,7 @@ export default function App() {
                 <Switch>
                   <Route path="/login" component={LoginPage} />
                   <Route path="/signup" component={SignUpPage} />
+                  <PrivateRoute path="/watch/:id" component={WatchMedia} />
                   <PrivateRoute path="/browse/add" component={AddProfilePage} />
                   <PrivateRoute path="/browse/:id" component={BrowseWatchPage} />
                   <PrivateRoute path="/browse" component={BrowsePage} />

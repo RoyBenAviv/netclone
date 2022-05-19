@@ -4,8 +4,9 @@ import { WatchHeader } from '../components/WatchHeader'
 import { WatchHero } from '../components/WatchHero'
 import { TVCarousel } from '../components/TVCarousel.jsx'
 import { movieService } from '../services/movies.service'
+import { LoadingProfile } from '../components/LoadingProfile'
 
-export const BrowseWatchPage = (props) => {
+export const BrowseWatchPage = ({match}) => {
   const { user } = useAuth()
   const [profile, setProfile] = useState()
   const [movies, setMovies] = useState()
@@ -24,19 +25,23 @@ export const BrowseWatchPage = (props) => {
         return movies.filter(movie => movie.isTranding === true)
   }
 
+  const getActionMovies = () => {
+    return movies.filter(movie => movie.genre === 'action')
+  }
+
   const loadProfile = () => {
-    const id = props.match.params.id
+    const id = match.params.id
     const profile = user.profiles.find((profile) => profile.id === id)
     setProfile(profile)
   }
 
-  if (!profile || !movies) return
+  if (!profile || !movies) return <LoadingProfile profile={profile} />  
   return (
     <section className="browse-watch-page">
       <WatchHeader profile={profile} />
       <WatchHero />
-      <TVCarousel movies={movies} name="Popular on Netflix" />
       <TVCarousel movies={getTrendingMovies()} name="Tranding Now" />
+      <TVCarousel movies={getActionMovies()} name="Action Movies" />
     </section>
   )
 }
