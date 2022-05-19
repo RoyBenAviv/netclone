@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/Netflix/static/css/main.0b17b19e.css",
+    "main.js": "/Netflix/static/js/main.4ef01359.js",
+    "static/js/787.0904c1f0.chunk.js": "/Netflix/static/js/787.0904c1f0.chunk.js",
+    "static/media/intro.mp4": "/Netflix/static/media/intro.07935bdadcad0a91b662.mp4",
+    "static/media/homepage-background.jpg": "/Netflix/static/media/homepage-background.9430cac1998978d4cbb6.jpg",
+    "static/media/vikings.webp": "/Netflix/static/media/vikings.59d201ec06dbc5fe7b83.webp",
+    "static/media/NetflixSansBold.ttf": "/Netflix/static/media/NetflixSansBold.cea8acffd548be06c7c7.ttf",
+    "static/media/NetflixSansRegular.ttf": "/Netflix/static/media/NetflixSansRegular.31acc1edd781a074d7f9.ttf",
+    "static/media/device-pile.png": "/Netflix/static/media/device-pile.8e6539e8bfc6937a0648.png",
+    "static/media/mobile.jpg": "/Netflix/static/media/mobile.063578d5b6d5ab4155ec.jpg",
+    "static/media/8.png": "/Netflix/static/media/8.d10d2f9b4691fa64170e.png",
+    "static/media/6.png": "/Netflix/static/media/6.af5bc0f77a5bce2ae2c5.png",
+    "static/media/7.png": "/Netflix/static/media/7.a6ed85b03f79c52acb15.png",
+    "static/media/2.png": "/Netflix/static/media/2.245b34280520e655e16b.png",
+    "static/media/4.png": "/Netflix/static/media/4.4277084e0d984c1e398d.png",
+    "static/media/3.png": "/Netflix/static/media/3.20cb0af78d1840cfdaa1.png",
+    "static/media/5.png": "/Netflix/static/media/5.8fa3e867398f0437eee3.png",
+    "static/media/1.png": "/Netflix/static/media/1.baf6e2cf9fff548c0fb5.png",
+    "static/media/spiderman-2-small.jpg": "/Netflix/static/media/spiderman-2-small.5fed95a5632fa732ff5c.jpg",
+    "static/media/plus.png": "/Netflix/static/media/plus.ab126e0a0339cf445b77.png",
+    "static/media/red-notice-small.jpg": "/Netflix/static/media/red-notice-small.ed01824dc39f7c1f61e4.jpg",
+    "static/media/8-mile-small.jpg": "/Netflix/static/media/8-mile-small.9fde36dd9762fe69865e.jpg",
+    "static/media/download-icon.gif": "/Netflix/static/media/download-icon.1ce72c891b52e6f68f2f.gif",
+    "static/media/the-tinder-swindler-small.jpg": "/Netflix/static/media/the-tinder-swindler-small.4d4e0847af1fd78ccdfc.jpg",
+    "static/media/matrix-small.jpg": "/Netflix/static/media/matrix-small.b9d060571e62929a4661.jpg",
+    "static/media/return-to-space-small.jpg": "/Netflix/static/media/return-to-space-small.946f85ca738cde21a8d8.jpg",
+    "static/media/vikings-logo.webp": "/Netflix/static/media/vikings-logo.7a2c935afb77fbb43e08.webp",
+    "static/media/tv.png": "/Netflix/static/media/tv.0049bc70babc1f94cf88.png",
+    "static/media/the-dictator-small.jpg": "/Netflix/static/media/the-dictator-small.eb405319f3a9f7b6068e.jpg",
+    "index.html": "/Netflix/index.html",
+    "static/media/loading1.svg": "/Netflix/static/media/loading1.f64e437216d045fd260d2b330a806257.svg",
+    "static/media/loading.svg": "/Netflix/static/media/loading.8f22934b9bab43f6f1c8f842829960aa.svg",
+    "main.0b17b19e.css.map": "/Netflix/static/css/main.0b17b19e.css.map",
+    "main.4ef01359.js.map": "/Netflix/static/js/main.4ef01359.js.map",
+    "787.0904c1f0.chunk.js.map": "/Netflix/static/js/787.0904c1f0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0b17b19e.css",
+    "static/js/main.4ef01359.js"
+  ]
+}
