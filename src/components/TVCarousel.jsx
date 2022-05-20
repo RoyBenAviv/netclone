@@ -5,7 +5,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import { useHistory } from 'react-router-dom'
-export const TVCarousel = ({ movies, name }) => {
+export const TVCarousel = ({ media, name }) => {
 
   const history = useHistory()
 
@@ -46,9 +46,9 @@ export const TVCarousel = ({ movies, name }) => {
         modules={[Navigation]}
         className="mySwiper"
       >
-        {movies.map((movie) => (
-          <SwiperSlide onClick={() => history.push(`/watch/${movie.id}`)} key={movie.id} >
-            <img src={require(`../assets/images/movies/${movie.images.small}.jpg`)} alt="movie-image" />
+        {media.map((media) => (
+          <SwiperSlide onClick={() => history.push(`/watch/${media.id}`)} key={media.id} >
+            <img src={require(`../assets/images/media/${media.images.small}.jpg`)} alt="movie-image" />
           </SwiperSlide>
         ))}
       </Swiper>

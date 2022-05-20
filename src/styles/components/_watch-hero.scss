@@ -1,7 +1,6 @@
 .watch-hero {
     @include main-layout;
     position: relative;
-    background: url('../../assets/images/hero/vikings.webp');
     width: 100vw;
     filter: brightness(90%);
     height: 56vw;

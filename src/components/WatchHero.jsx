@@ -1,13 +1,16 @@
 import React from 'react'
-import vikingsLogo from '../assets/images/hero/vikings-logo.webp'
-export const WatchHero = () => {
 
+export const WatchHero = ({media}) => {
+
+   const hero = require('../assets/images/hero/' + media.images.hero + '.webp')
+
+    if(!media) return
     return (
-        <section className='watch-hero'>
+        <section className='watch-hero' style={{ backgroundImage: "url(" + hero + ")" }}>
             <div className='hero-opacity'></div>
             <div className="inner-hero">
-                <img src={vikingsLogo} alt="vikings-logo" />
-                <p>In this sequel to "Vikings," a hundred years have passed and a new generation of legendary heroes arises to forge its own destiny — and make history.</p>
+            <img src={require(`../assets/images/hero/${media.images.logo}.webp`)} alt="media-logo-image" />
+                <p>{media.description}</p>
 
             </div>
 

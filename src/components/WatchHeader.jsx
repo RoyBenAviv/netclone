@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 export const WatchHeader = ({profile}) => {
 
+  const headerRef = useRef()
+
+  useEffect(() => {
+    window.onscroll = () => {
+      if(window.scrollY > 10) {
+        headerRef.current.style.backgroundColor = 'black'
+      } else {
+        headerRef.current.style.backgroundColor = 'transparent'
+      }
+    }
+
+  })
 
   return (
-    <header className='watch-header'>
+    <header ref={headerRef} className='watch-header'>
       <div className="left-header">
         <div className="logo">
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="92.5" height="25" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 138">

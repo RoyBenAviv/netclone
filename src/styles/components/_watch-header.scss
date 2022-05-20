@@ -3,6 +3,7 @@
         position: fixed;
         width: 100%;
         z-index: 100;
+        transition: background-color 0.5s;
         .left-header {
             @include flex;
             gap: rem(45px);
