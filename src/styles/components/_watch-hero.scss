@@ -2,7 +2,7 @@
     @include main-layout;
     position: relative;
     width: 100vw;
-    filter: brightness(90%);
+    // filter: brightness(90%);
     height: 56vw;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -35,6 +35,14 @@
             width: 100%;
             font-size: 1.2vw;
             text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
+        }
+        button {
+            @include white-button;
+            @include flex;
+            padding: 0.6em 1.6em;
+            gap: rem(14px);
+            border-radius: 6px;
+            margin-block-start: 1.5vw;
         }
       }
 }

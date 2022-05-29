@@ -5,10 +5,12 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import { useHistory } from 'react-router-dom'
-export const TVCarousel = ({ media, name }) => {
-
+export const TVCarousel = ({ continueToWatch, media, name }) => {
   const history = useHistory()
-
+  const playMedia = (mediaId) => {
+    continueToWatch(mediaId)
+    history.push(`/watch/${mediaId}`)
+  }
   return (
     <section className="tv-carousel">
       <h2>{name}</h2>
@@ -26,7 +28,7 @@ export const TVCarousel = ({ media, name }) => {
           420: {
             width: 800,
             slidePerView: 3,
-            spaceBetween: 2
+            spaceBetween: 2,
           },
           768: {
             width: 968,
@@ -35,9 +37,9 @@ export const TVCarousel = ({ media, name }) => {
           1200: {
             width: 1800,
             slidesPerView: 6,
-          }
+          },
         }}
-        loop={true}
+        loop={false}
         loopFillGroupWithBlank={true}
         pagination={{
           clickable: true,
@@ -47,7 +49,7 @@ export const TVCarousel = ({ media, name }) => {
         className="mySwiper"
       >
         {media.map((media) => (
-          <SwiperSlide onClick={() => history.push(`/watch/${media.id}`)} key={media.id} >
+          <SwiperSlide onClick={() => playMedia(media.id)} key={media.id}>
             <img src={require(`../assets/images/media/${media.images.small}.jpg`)} alt="movie-image" />
           </SwiperSlide>
         ))}
