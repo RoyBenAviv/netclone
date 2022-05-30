@@ -39,8 +39,8 @@ export const TVCarousel = ({ continueToWatch, media, name }) => {
             slidesPerView: 6,
           },
         }}
-        loop={false}
-        loopFillGroupWithBlank={true}
+        loop={true}
+        loopFillGroupWithBlank={false}
         pagination={{
           clickable: true,
         }}

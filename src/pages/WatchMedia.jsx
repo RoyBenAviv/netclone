@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { LoadingProfile } from '../components/LoadingProfile'
 import { movieService } from '../services/movies.service'
 import { tvShowsService } from '../services/tvshows.service'
@@ -19,7 +20,8 @@ export const WatchMedia = ({ match }) => {
   const [wasPaused, setWasPaused] = useState(null)
   const [currentVolume, setCurrentVolume] = useState('high')
   const [isScrubbing, setIsScrubbing] = useState(false)
-
+  const history = useHistory()
+  
   const handleChange = (e) => {
     setVolume(e.target.value)
     video.current.volume = volume
@@ -29,12 +31,6 @@ export const WatchMedia = ({ match }) => {
 
   useEffect(() => {
     loadMedia()
-    document.addEventListener("mouseup", event => {
-      if(isScrubbing) toggleScrubbing(event)
-    })
-    document.addEventListener("mousemove", event => {
-      if(isScrubbing) handleTimeLine(event)
-    })
   }, [])
 
   const loadMedia = async () => {
@@ -131,10 +127,11 @@ export const WatchMedia = ({ match }) => {
     handleTimeLine(event)
   }
 
+
   if (!media) return <LoadingProfile />
   return (
     <section className="watch-media">
-      <div ref={videoContainer} className={'video-container ' + currentVolume}>
+      <div ref={videoContainer} onDoubleClick={() => toggleFullScreenMode()} className={'video-container ' + currentVolume}>
         <div className="video-controls">
           <div className='timeline-wrapper'> 
             <div onMouseDown={event => toggleScrubbing(event)} onMouseMove={(event) => handleTimeLine(event)} ref={timeLineContainer} className="timeline-container">
@@ -145,6 +142,7 @@ export const WatchMedia = ({ match }) => {
             </div>
           </div>
           <div className="controls">
+      <button onClick={() => history.goBack()} className='back'><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M24 11.0001L3.41421 11.0001L8.70711 5.70718L7.29289 4.29297L0.292892 11.293C0.105356 11.4805 0 11.7349 0 12.0001C0 12.2653 0.105356 12.5196 0.292892 12.7072L7.29289 19.7072L8.70711 18.293L3.41421 13.0001H24V11.0001Z" fill="currentColor"></path></svg></button>
             <div className="left-side">
               <button onClick={() => togglePlay()} ref={playPauseBtn} className="play-pause">
                 <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="pause">
@@ -254,7 +252,7 @@ export const WatchMedia = ({ match }) => {
             </div>
           </div>
         </div>
-        <video onClick={() => togglePlay()} onLoadedData={() => getDuration()} onTimeUpdate={() => getCurrTime()} ref={video} autoPlay src={media.url}></video>
+        <video onClick={() => togglePlay()} onLoadedData={() => getDuration()} onTimeUpdate={() => getCurrTime()} ref={video}  autoPlay src={media.url}></video>
       </div>
     </section>
   )
