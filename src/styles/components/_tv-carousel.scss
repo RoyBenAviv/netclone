@@ -2,8 +2,12 @@
   position: relative;
   top: -100px;
   padding-inline-start: rem(60px);
+  @media(max-width: 1200px) {
+    top: -30px;
+  }
   @media (max-width: 800px) {
     padding-inline-start: rem(20px);
+    
   }
   h2 {
     user-select: none;

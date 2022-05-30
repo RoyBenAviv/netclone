@@ -4,9 +4,16 @@
         width: 100%;
         z-index: 100;
         transition: background-color 0.5s;
+        @media (max-width: 950px) {
+            height: 50px;
+        }
         .left-header {
+            height: 100%;
             @include flex;
             gap: rem(45px);
+            @media(max-width: 600px) {
+                gap: rem(20px);
+            }
             nav {
                 @include flex;
                 gap: rem(20px);
@@ -14,6 +21,9 @@
                     cursor: pointer;
                     transition: color 0.3s ease-in-out;
                     font-size: rem(14px);
+                    @media(max-width: 600px) {
+                        font-size: rem(12px);
+                    }
                     &:hover {
                         color: #b3b3b3;
                         text-decoration: none;
@@ -23,11 +33,29 @@
         }
         .right-header {
             @include flex;
+            height: 100%;
             gap: rem(20px);
-            .profile-image {
-                width: 32px;
-                height: 32px;
-                border-radius: 4px;
+            .profile-container {
+                position: relative;
+                .profile-image {
+                    cursor: pointer;
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 4px;
+                }
+                .options {
+                    position: absolute;
+                    padding-top: 20px
+                }
+            }
+            .search {
+                background: none;
+                border: none;
+                color: inherit;
+                padding: 0;
+                @media (max-width: 600px) {
+                    display: none;
+                }
             }
         }
 }

@@ -26,8 +26,8 @@ export const TVCarousel = ({ continueToWatch, media, name }) => {
             slidePerView: 3,
           },
           420: {
-            width: 800,
-            slidePerView: 3,
+            width: 520,
+            slidePerView: 2,
             spaceBetween: 2,
           },
           768: {

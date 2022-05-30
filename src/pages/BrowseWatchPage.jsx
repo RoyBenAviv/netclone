@@ -51,7 +51,7 @@ export const BrowseWatchPage = ({ match }) => {
   const continueToWatch = (mediaId) => {
     const media = tvShows.concat(movies).find(media => media.id === mediaId)
     if (profile.continueToWatch.some(media => media.id === mediaId)) return
-    profile.continueToWatch.push(media)
+    profile.continueToWatch.unshift(media)
     userService.save(null, user)
   }
 

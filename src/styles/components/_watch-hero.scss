@@ -18,10 +18,12 @@
     }
       .inner-hero {
         position: absolute;
-        top: 0;
         top: 35%;
         width: 36%;
         z-index: 10;
+        @media(max-width: 500px) {
+            top: 25%;
+        }
         img, p {
             user-select: none;
         }
@@ -35,6 +37,9 @@
             width: 100%;
             font-size: 1.2vw;
             text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
+            @media (max-width: 800px) {
+                display: none;
+            }
         }
         button {
             @include white-button;
@@ -43,6 +48,13 @@
             gap: rem(14px);
             border-radius: 6px;
             margin-block-start: 1.5vw;
+            @media(max-width: 560px) {
+                font-size: 13px;
+                padding: 2px 1.6em;
+                svg {
+                    width: 13px;
+                }
+            }
         }
       }
 }

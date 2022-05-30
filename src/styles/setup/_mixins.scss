@@ -71,6 +71,9 @@
   .logo {
     svg {
       -webkit-font-smoothing: antialiased;
+      @media(max-width: 700px) {
+        width: 70px;
+      }
       path {
         fill: $red;
       }
