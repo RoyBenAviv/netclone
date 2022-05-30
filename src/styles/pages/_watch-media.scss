@@ -6,7 +6,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    &.mute {
+      .volume-mute {
+        display: block !important;
+      }
+    }
+    &.low {
+      .volume-low {
+        display: block !important;
+      }
+    }
+    &.medium {
+      .volume-medium {
+        display: block !important;
+      }
+    }
+    &.high {
+      .volume-high {
+        display: block !important;
+      }
+    }
     &.paused,
     &:hover,
     &:focus-within {
@@ -26,15 +45,15 @@
     }
 
     &.full-screen {
-        .close {
-          display: none;
-        }
+      .close {
+        display: none;
       }
-      &:not(.full-screen) {
-        .open {
-          display: none;
-        }
+    }
+    &:not(.full-screen) {
+      .open {
+        display: none;
       }
+    }
     video {
       width: 90%;
       height: 100vh;
@@ -43,7 +62,7 @@
       }
       &.full-screen {
         width: 100%;
-    }
+      }
     }
     .video-controls {
       position: absolute;
@@ -53,35 +72,89 @@
       color: white;
       z-index: 100;
       opacity: 0;
-      padding: 0 0 rem(40px) rem(25px);
+      padding: 0 rem(40px) rem(40px) rem(25px);
       .controls {
-        @include flex(row, _, center);
-        gap: rem(40px);
-        .volume-container {
-            position: relative;
-            &:hover {
-                .input-container {
-                    display: block;
+        @include flex(row, space-between, center);
+        .left-side, .right-side {
+          display: flex;
+          gap: rem(40px);
+        }
+        .playback-container {
+          position: relative;
+          &:hover {
+            .playback-options {
+              display: block;
+            }
+          }
+          .playback-options {
+            position: absolute;
+            width: 750px;
+            height: 200px;
+            background-color: lighten($background2, 8%);
+            padding: rem(25px) rem(30px);
+            display: none;
+            bottom: 100%;
+            right: -100%;
+            h3 {
+              font-size: rem(28px);
+              font-family: Arial, Helvetica, sans-serif;
+              font-weight: bold;
+            }
+            .line {
+              width: 100%;
+              height: 2px;
+              background-color: $grey;
+              margin-block-start: rem(50px);
+              @include flex(row, space-between);
+              span {
+                cursor: pointer;
+                width: 16px;
+                height: 16px;
+                background-color: white;
+                border-radius: 50%;
+                &.active {
+                  outline: 4px solid darken(white, 20%);
+                  outline-offset: 8px;
+                  width:20px;
+                  height:20px;
                 }
+              }
             }
-            .input-container {
-                display: none;
-                left: 0;
-                bottom: 100%;
-                width: 2.5vw;
-                position: absolute;
-                background-color: $background2;
-                padding: rem(10px) 0;
+            .options {
+              margin-block-start: rem(20px);
+              width: 100%; 
+              @include flex(row, space-between);
+              font-size: rem(30px);
             }
-            input {
-                position: relative;
-                left: -2px;
-                -webkit-appearance: slider-vertical;
-                width: 100%;
-                accent-color: $red;
-                background: linear-gradient(to right, #82CFD0 0%, #82CFD0 50%, #fff 50%, #fff 100%);
-            }
+          }
+        }
 
+
+        .volume-container {
+          position: relative;
+
+          &:hover {
+            .input-container {
+              display: block;
+            }
+          }
+          .input-container {
+            display: none;
+            left: 0;
+            bottom: 100%;
+            width: 2.5vw;
+            position: absolute;
+            background-color: lighten($background2, 8%);
+            padding: rem(10px) 0;
+          }
+          input {
+            position: relative;
+            left: -2px;
+            -webkit-appearance: slider-vertical;
+            width: 100%;
+            accent-color: $red;
+            background: linear-gradient(to right, #82cfd0 0%, #82cfd0 50%, #fff 50%, #fff 100%);
+          }
         }
         button {
           background: none;
@@ -93,6 +166,12 @@
           transition: transform 0.1s ease-in-out;
           &:hover {
             transform: scale(1.2);
+          }
+          .volume-high,
+          .volume-medium,
+          .volume-low,
+          .volume-mute {
+            display: none;
           }
         }
       }
