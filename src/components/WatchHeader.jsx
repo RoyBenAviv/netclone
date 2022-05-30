@@ -1,22 +1,42 @@
+import { signOut } from 'firebase/auth'
 import React, { useEffect, useRef, useState } from 'react'
-
-export const WatchHeader = ({profile}) => {
-
+import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { useAuth } from '../contexts/AuthContext'
+import { LoadingProfile } from './LoadingProfile.jsx'
+export const WatchHeader = ({ profile }) => {
+  const { user, logout } = useAuth()
   const headerRef = useRef()
+  const history = useHistory()
+
+  const [loadingProfile, setLoadingProfile] = useState(null)
   const [isOptionsShown, setIsOptionsShown] = useState(false)
   useEffect(() => {
     window.onscroll = () => {
-      if(window.scrollY > 10) {
+      if (window.scrollY > 10) {
         headerRef.current.style.backgroundColor = 'black'
       } else {
         headerRef.current.style.backgroundColor = 'transparent'
       }
     }
-
   })
 
+  const signOut = async () => {
+    await logout()
+    history.push('/')
+  }
+
+  const onProfileChoose = (profile) => {
+    setLoadingProfile(profile)
+    setTimeout(() => {
+      setLoadingProfile(null)
+      history.push(`/browse/${profile.id}`)
+      history.go(0)
+    }, 1400)
+  }
+  if (loadingProfile) return <LoadingProfile profile={loadingProfile} />
   return (
-    <header ref={headerRef} className='watch-header'>
+    <header ref={headerRef} className="watch-header">
       <div className="left-header">
         <div className="logo">
           <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="92.5" height="25" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 138">
@@ -27,16 +47,58 @@ export const WatchHeader = ({profile}) => {
           </svg>
         </div>
         <nav>
-            <a>Home</a>
-            <a>My List</a>
+          <a>Home</a>
+          <a>My List</a>
         </nav>
       </div>
-      <div className='right-header'>
-          <button  className="search"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="search-icon"><path fillRule="evenodd" clipRule="evenodd" d="M13 11C13 13.7614 10.7614 16 8 16C5.23858 16 3 13.7614 3 11C3 8.23858 5.23858 6 8 6C10.7614 6 13 8.23858 13 11ZM14.0425 16.2431C12.5758 17.932 10.4126 19 8 19C3.58172 19 0 15.4183 0 11C0 6.58172 3.58172 3 8 3C12.4183 3 16 6.58172 16 11C16 11.9287 15.8417 12.8205 15.5507 13.6497L24.2533 18.7028L22.7468 21.2972L14.0425 16.2431Z" fill="currentColor"></path></svg></button>
-          <div onMouseLeave={() => setIsOptionsShown(false)} onMouseOver={() => setIsOptionsShown(true)} className='profile-container'>
-          <img    className="profile-image" src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile-image" />
-            {isOptionsShown ? <div onMouseOver={() => setIsOptionsShown(true)} className='options'>asdasdasdasd</div> : null}
+      <div className="right-header">
+        <button className="search">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="search-icon">
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M13 11C13 13.7614 10.7614 16 8 16C5.23858 16 3 13.7614 3 11C3 8.23858 5.23858 6 8 6C10.7614 6 13 8.23858 13 11ZM14.0425 16.2431C12.5758 17.932 10.4126 19 8 19C3.58172 19 0 15.4183 0 11C0 6.58172 3.58172 3 8 3C12.4183 3 16 6.58172 16 11C16 11.9287 15.8417 12.8205 15.5507 13.6497L24.2533 18.7028L22.7468 21.2972L14.0425 16.2431Z"
+              fill="currentColor"
+            ></path>
+          </svg>
+        </button>
+        <div onMouseLeave={() => setIsOptionsShown(false)} onMouseOver={() => setIsOptionsShown(true)} className="profile-container">
+          <div className="profile">
+            <img className="profile-image" src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile-image" />
+            <span className="arrow"></span>
           </div>
+          {isOptionsShown ? (
+            <div onMouseOver={() => setIsOptionsShown(true)} className="options">
+              <ul className="options-list">
+                {user.profiles.map((profile) => (
+                  <li key={profile.name}>
+                    <a onClick={() => onProfileChoose(profile)} key={profile.name}>
+                      <img className="profile-image" src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile-image" />
+                      <p>{profile.name}</p>
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <Link to="/ManageProfiles">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="svg-icon svg-icon-edit">
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M22.2071 7.79285L15.2071 0.792847L13.7929 2.20706L20.7929 9.20706L22.2071 7.79285ZM13.2071 3.79285C12.8166 3.40232 12.1834 3.40232 11.7929 3.79285L2.29289 13.2928C2.10536 13.4804 2 13.7347 2 14V20C2 20.5522 2.44772 21 3 21H9C9.26522 21 9.51957 20.8946 9.70711 20.7071L19.2071 11.2071C19.5976 10.8165 19.5976 10.1834 19.2071 9.79285L13.2071 3.79285ZM17.0858 10.5L8.58579 19H4V14.4142L12.5 5.91417L17.0858 10.5Z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>{' '}
+                    Manage Profiles
+                  </Link>
+                </li>
+                <div></div>
+                <li>
+                  <a onClick={() => signOut()}>Sign out of Netflix</a>
+                </li>
+              </ul>
+            </div>
+          ) : null}
+        </div>
       </div>
     </header>
   )

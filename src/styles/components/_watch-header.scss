@@ -1,61 +1,118 @@
 .watch-header {
-        @include header;
-        position: fixed;
-        width: 100%;
-        z-index: 100;
-        transition: background-color 0.5s;
-        @media (max-width: 950px) {
-            height: 50px;
+  @include header;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  transition: background-color 0.5s;
+  @media (max-width: 950px) {
+    height: 50px;
+  }
+  .left-header {
+    height: 100%;
+    @include flex;
+    gap: rem(45px);
+    @media (max-width: 600px) {
+      gap: rem(20px);
+    }
+    nav {
+      @include flex;
+      gap: rem(20px);
+      a {
+        cursor: pointer;
+        transition: color 0.3s ease-in-out;
+        font-size: rem(14px);
+        @media (max-width: 600px) {
+          font-size: rem(12px);
         }
-        .left-header {
-            height: 100%;
-            @include flex;
-            gap: rem(45px);
-            @media(max-width: 600px) {
-                gap: rem(20px);
-            }
-            nav {
-                @include flex;
-                gap: rem(20px);
+        &:hover {
+          color: #b3b3b3;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .right-header {
+    @include flex;
+    height: 100%;
+    gap: rem(20px);
+    .profile-container {
+      position: relative;
+      .profile {
+        &:hover {
+          .arrow {
+            transform: rotate(180deg);
+          }
+        }
+        @include flex;
+        .profile-image {
+          cursor: pointer;
+          width: 32px;
+          height: 32px;
+          border-radius: 4px;
+        }
+        .arrow {
+          margin-left: 10px;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 5px 5px 0 5px;
+          border-color: #fff transparent transparent transparent;
+          transition: transform 367ms cubic-bezier(0.21, 0, 0.07, 1);
+        }
+      }
+      .options {
+        position: absolute;
+        right: 0;
+        padding-block-start: 20px;
+        .options-list {
+            padding: rem(10px) 0;
+            background-color: black;
+            width: 180px;
+            border: 1px solid lighten($background2, 20%);
+            li {
+                margin-block-end: rem(5px);
+                padding: rem(5px) rem(10px);
                 a {
+                @include flex(row, flex-start);
+
                     cursor: pointer;
-                    transition: color 0.3s ease-in-out;
-                    font-size: rem(14px);
-                    @media(max-width: 600px) {
-                        font-size: rem(12px);
+                    font-size: rem(12px);
+                    img {
+                        margin-inline-end: rem(10px);
+                        border-radius: 4px;
+                        width: 32px;
+                        height: 32px;
                     }
-                    &:hover {
-                        color: #b3b3b3;
-                        text-decoration: none;
+                    svg {
+                        margin-left: 5px;
+                        color: lighten($grey, 10%);
+                        margin-inline-end: rem(10px);
                     }
                 }
+            }
+            li:last-child {
+                a {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+            div {
+                width: 100%;
+                height: 1px;
+                margin: rem(10px) 0;
+                background-color: lighten($background2, 20%);
             }
         }
-        .right-header {
-            @include flex;
-            height: 100%;
-            gap: rem(20px);
-            .profile-container {
-                position: relative;
-                .profile-image {
-                    cursor: pointer;
-                    width: 32px;
-                    height: 32px;
-                    border-radius: 4px;
-                }
-                .options {
-                    position: absolute;
-                    padding-top: 20px
-                }
-            }
-            .search {
-                background: none;
-                border: none;
-                color: inherit;
-                padding: 0;
-                @media (max-width: 600px) {
-                    display: none;
-                }
-            }
-        }
+      }
+    }
+    .search {
+      background: none;
+      border: none;
+      color: inherit;
+      padding: 0;
+      @media (max-width: 600px) {
+        display: none;
+      }
+    }
+  }
 }

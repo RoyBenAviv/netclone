@@ -32,6 +32,10 @@ export const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(firebaseService.auth, email, password)
   }
 
+  function logout() {
+    return firebaseService.auth.signOut()
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged (firebaseService.auth, async (user) => {
       if(user) {
@@ -47,6 +51,7 @@ export const AuthProvider = ({ children }) => {
     user,
     signup,
     login,
+    logout
   }
 
   return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>
