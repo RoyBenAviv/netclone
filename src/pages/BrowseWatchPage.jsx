@@ -34,6 +34,10 @@ export const BrowseWatchPage = ({ match }) => {
     return movies.filter((movie) => movie.isTranding === true)
   }
 
+  const getDramaTVShows = () => {
+    return tvShows.filter((show) => show.genre === 'drama')
+  }
+
   const getActionMovies = () => {
     return movies.filter((movie) => movie.genre === 'action')
   }
@@ -60,10 +64,11 @@ export const BrowseWatchPage = ({ match }) => {
     <section className="browse-watch-page">
       <WatchHeader profile={profile} />
       <WatchHero continueToWatch={continueToWatch} media={tvShows[1]}/>
-      <TVCarousel continueToWatch={continueToWatch} media={getTrendingMovies()} name="Tranding Now" />
+      <TVCarousel continueToWatch={continueToWatch} media={getTrendingMovies()} name="Trending Now" />
       {profile.continueToWatch.length ? <TVCarousel continueToWatch={continueToWatch} media={profile.continueToWatch} name={`Continue to watch for ${profile.name}`} /> : ''}
-      <TVCarousel continueToWatch={continueToWatch} media={getActionMovies()} name="Action Movies" />
       <TVCarousel continueToWatch={continueToWatch} media={getPopularTVShows()} name="Popular TV Shows" />
+      <TVCarousel continueToWatch={continueToWatch} media={getActionMovies()} name="Action Movies" />
+      <TVCarousel continueToWatch={continueToWatch} media={getDramaTVShows()} name="Drama TV Shows" />
       {/* <svg id="rank-1" width="100%" height="100%" viewBox="-20 0 70 154" class="svg-icon svg-icon-rank-1 top-10-rank"><path stroke="#595959" stroke-LineJoin="square" strokeWidth="4" d="M35.377 152H72V2.538L2 19.362v30.341l33.377-8.459V152z"></path></svg> */}
     </section>
   )
