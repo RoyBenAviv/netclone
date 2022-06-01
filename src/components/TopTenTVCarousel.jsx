@@ -1,47 +1,46 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper'
-
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import { useHistory } from 'react-router-dom'
-export const TVCarousel = ({ continueToWatch, media, name }) => {
+export const TopTenTVCarousel = ({ continueToWatch, media, name }) => {
   const history = useHistory()
   const playMedia = (mediaId) => {
     continueToWatch(mediaId)
     history.push(`/watch/${mediaId}`)
   }
   return (
-    <section className="tv-carousel">
+    <section className="tv-carousel top-ten">
       <h2>{name}</h2>
 
       <Swiper
         slidesPerView={6}
-        spaceBetween={8}
-        slidesPerGroup={3}
-        allowSlidePrev={false}
+        spaceBetween={100}
+        slidesPerGroup={1}
+        allowSlidePrev={true}
+        loop={window.matchMedia('(max-width: 1200px)').matches ? true : false }
+        loopFillGroupWithBlank={true}
         breakpoints={{
           0: {
             width: 1000,
-            slidePerView: 3,
+            slidePerView: 6,
           },
-          420: {
-            width: 520,
-            slidePerView: 2,
-            spaceBetween: 2,
-          },
-          768: {
-            width: 968,
-            slidesPerView: 4,
+          800: {
+            width: 1300,
+            slidePerView: 5,
+            spaceBetween: 70
           },
           1200: {
+            width: 1500,
+            slidesPerView: 6,
+          },
+          1600: {
             width: 1800,
             slidesPerView: 6,
           },
         }}
-        loop={media.length < 5 ? false : true}
-        loopFillGroupWithBlank={false}
         pagination={{
           clickable: true,
         }}
@@ -49,14 +48,11 @@ export const TVCarousel = ({ continueToWatch, media, name }) => {
         modules={[Navigation]}
         className="mySwiper"
       >
-        {media.map((media) => (
+        {media.map((media, idx) => (
           <SwiperSlide onClick={() => playMedia(media.id)} key={media.id}>
-            <div className='media-container'>
-            <img src={require(`../assets/images/media/${media.images.small}.jpg`)} alt="movie-image" />
-            <video autoPlay src={media.url}></video>
-            <div className='content'>
-              asdasdasda
-            </div>
+            <div className="top-ten-slider">
+              <img className="number" src={require(`../assets/images/top/${idx + 1}.png`)} alt="top-ten-number-image" />
+              <img className="media-image" src={require(`../assets/images/top/${media.images.medium}.jpg`)} alt="top-ten-image" />
             </div>
           </SwiperSlide>
         ))}

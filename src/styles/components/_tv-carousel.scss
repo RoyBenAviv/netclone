@@ -63,12 +63,49 @@
     @include flex;
     border-radius: 4px;
     cursor: pointer;
-    img {
+    .top-ten-slider {
+      display: flex;
+      align-items: center;
+      .media-image {
+        width: 70%;
+      }
+      .number {
+        margin-inline-end: -60px;
+        @media (max-width: 1200px) {
+          margin-inline-end: rem(-40px)
+        }
+      }
+    }
+    .media-container {
+      position: relative;
+      &:hover {
+        .content {
+          transition-delay: 0.5s;
+          transform: translateY(0);
+          border-bottom-left-radius: 4px;
+          border-bottom-right-radius: 4px;
+        }
+      }
+      .content {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 30%;
+        background-color: $background2;
+        transform: translateY(100%);
+        transition: all 0.3s;
+      }
+    }
+    img, video {
       border-radius: 4px;
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+    video {
+      display: none;
     }
   }
 }
