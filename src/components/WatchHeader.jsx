@@ -46,8 +46,8 @@ export const WatchHeader = ({ profile }) => {
           </svg>
         </div>
         <nav>
-          <a>Home</a>
-          <a>My List</a>
+          <Link to={`/browse/${profile.id}`}>Home</Link>
+          <Link to={`/browse/my-list/${profile.id}`}>My List</Link>
         </nav>
       </div>
       <div className="right-header">

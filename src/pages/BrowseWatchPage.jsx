@@ -64,17 +64,28 @@ export const BrowseWatchPage = ({ match }) => {
     userService.save(null, user)
   }
 
+  const removeFromList = (mediaId) => {
+    console.log(mediaId)
+  }
+
+  const addToList = (mediaId) => {
+    const media = tvShows.concat(movies).find(media => media.id === mediaId)
+    if (profile.myList.some(media => media.id === mediaId)) return
+    profile.myList.unshift(media)
+    userService.save(null, user)
+  }
+
   if (!profile || !movies || !tvShows) return <LoadingProfile profile={profile} />
   return (
     <section className="browse-watch-page">
       <WatchHeader profile={profile} />
       <WatchHero continueToWatch={continueToWatch} media={tvShows[1]}/>
-      <TVCarousel continueToWatch={continueToWatch} media={getTrendingMovies()} name="Trending Now" />
-      {profile.continueToWatch.length ? <TVCarousel continueToWatch={continueToWatch} media={profile.continueToWatch} name={`Continue to watch for ${profile.name}`} /> : ''}
-      <TVCarousel continueToWatch={continueToWatch} media={getPopularTVShows()} name="Popular TV Shows" />
+      <TVCarousel profile={profile} addToList={addToList} removeFromList={removeFromList} continueToWatch={continueToWatch} media={getTrendingMovies()} name="Trending Now" />
+      {profile.continueToWatch.length ? <TVCarousel profile={profile} addToList={addToList} removeFromList={removeFromList} continueToWatch={continueToWatch} media={profile.continueToWatch} name={`Continue to watch for ${profile.name}`} /> : ''}
+      <TVCarousel profile={profile} addToList={addToList} removeFromList={removeFromList} continueToWatch={continueToWatch}  media={getPopularTVShows()} name="Popular TV Shows" />
       <TopTenTVCarousel continueToWatch={continueToWatch} media={getTopTenTVShows()} name="Top 5 TV Shows Today" />
-      <TVCarousel continueToWatch={continueToWatch} media={getActionMovies()} name="Action Movies" />
-      <TVCarousel continueToWatch={continueToWatch} media={getDramaTVShows()} name="Drama TV Shows" />
+      <TVCarousel profile={profile} addToList={addToList} removeFromList={removeFromList} continueToWatch={continueToWatch}  media={getActionMovies()} name="Action Movies" />
+      <TVCarousel profile={profile} addToList={addToList} removeFromList={removeFromList} continueToWatch={continueToWatch} media={getDramaTVShows()} name="Drama TV Shows" />
     </section>
   )
 }

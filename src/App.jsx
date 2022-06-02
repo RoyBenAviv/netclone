@@ -4,6 +4,7 @@ import { HomePage } from './pages/HomePage'
 import { LoginPage } from './pages/LoginPage'
 import { SignUpPage } from './pages/SignUpPage'
 import { BrowsePage } from './pages/BrowsePage'
+import { MyListPage } from './pages/MyListPage.jsx'
 import { BrowseWatchPage } from './pages/BrowseWatchPage'
 import { AddProfilePage } from './pages/AddProfilePage'
 import { ManageProfiles } from './pages/ManageProfiles'
@@ -33,6 +34,7 @@ export default function App() {
                   <Route path="/signup" component={SignUpPage} />
                   <PrivateRoute path="/watch/:id" component={WatchMedia} />
                   <PrivateRoute path="/browse/add" component={AddProfilePage} />
+                  <PrivateRoute path="/browse/my-list/:id" component={MyListPage} />
                   <PrivateRoute path="/browse/:id" component={BrowseWatchPage} />
                   <PrivateRoute path="/browse" component={BrowsePage} />
                   <PrivateRoute path="/ManageProfiles" component={ManageProfiles} />

@@ -1,10 +1,10 @@
+import { refEqual } from 'firebase/firestore'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
 export const WatchHero = ({ continueToWatch, media }) => {
   const history = useHistory()
   const hero = require('../assets/images/hero/' + media.images.hero + '.webp')
-
   const playMedia = (mediaId) => {
     continueToWatch(mediaId)
     history.push(`/watch/${mediaId}`)
