@@ -72,6 +72,9 @@
               font-size: rem(16px);
               margin-inline-start: rem(20px);
             }
+            @media (max-width: 500px) {
+              width: 180px;
+            }
           }
         }
       }
