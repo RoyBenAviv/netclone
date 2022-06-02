@@ -1,10 +1,16 @@
 .home-header {
   padding-block-start: rem(28px);
   margin: 0 rem(56px);
+  @media (max-width: 500px) {
+    margin: 0 rem(16px);
+  }
   @include flex(row, space-between);
   .logo {
     svg {
       -webkit-font-smoothing: antialiased;
+      @media (max-width: 500px) {
+       width: 100px;
+      }
       path {
         fill: $red;
       }

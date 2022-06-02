@@ -96,6 +96,9 @@
         transform: translateY(100%);
         transition: all 0.3s;
         border-top: 1px solid black;
+        @media (max-width: 800px) {
+          display: none;
+        }
         .actions {
           @include flex(row, space-between);
           .left,
