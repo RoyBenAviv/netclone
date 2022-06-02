@@ -38,7 +38,7 @@ export const WhosWatching = ({ user }) => {
         <ul className="profiles-list">
           {user.profiles.map((profile) => (
             <li onClick={() => onProfileChoose(profile)} key={profile.name}>
-              <img className="profile-image" src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile-image" />
+              <img className="profile-image" src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile" />
               <p>{profile.name}</p>
             </li>
           ))}

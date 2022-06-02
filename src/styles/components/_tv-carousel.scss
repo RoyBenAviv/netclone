@@ -79,6 +79,12 @@
     .media-container {
       position: relative;
       &:hover {
+        img {
+          visibility: hidden;
+        }
+        video {
+          visibility: visible;
+        }
         .content {
           transition-delay: 0.5s;
           transform: translateY(0);
@@ -103,9 +109,15 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition-delay: 0.7s;
     }
     video {
-      display: none;
+      position: absolute;
+      top: 0;      
+      visibility: hidden;
+      @media (max-width: 1200px) {
+        display: none;
+      }
     }
   }
 }

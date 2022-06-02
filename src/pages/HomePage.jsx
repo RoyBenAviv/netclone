@@ -76,7 +76,7 @@ export const HomePage = () => {
                 <div className="download-animation">
                   <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/boxshot.png" alt="stranger-things" />
                   <p>Downloading...</p>
-                  <img src={downloadIcon} alt="download-icon" />
+                  <img src={downloadIcon} alt="download" />
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@ export const HomePage = () => {
             </div>
             <div className="content-img-wrapper">
               <div className="content-img">
-                <img className="main-img" src={deviceImg} alt="homepage-video" />
+                <img className="main-img" src={deviceImg} alt="homepage" />
                 <div className="second-video-container">
                   <video autoPlay playsInline muted loop>
                     <source src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-devices.m4v" type="video/mp4" />

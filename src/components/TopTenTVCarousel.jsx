@@ -51,8 +51,8 @@ export const TopTenTVCarousel = ({ continueToWatch, media, name }) => {
         {media.map((media, idx) => (
           <SwiperSlide onClick={() => playMedia(media.id)} key={media.id}>
             <div className="top-ten-slider">
-              <img className="number" src={require(`../assets/images/top/${idx + 1}.png`)} alt="top-ten-number-image" />
-              <img className="media-image" src={require(`../assets/images/top/${media.images.medium}.jpg`)} alt="top-ten-image" />
+              <img className="number" src={require(`../assets/images/top/${idx + 1}.png`)} alt="top-ten-number-" />
+              <img className="media-image" src={require(`../assets/images/top/${media.images.medium}.jpg`)} alt="top-ten" />
             </div>
           </SwiperSlide>
         ))}

@@ -34,7 +34,7 @@ export const SignUpPage = () => {
   if(isLoggedIn) return <VideoIntroPlayer />
   return (
     <section className="login-page">
-      <img className="background-img" src={backgroundImg} alt="background-img" />
+      <img className="background-img" src={backgroundImg} alt="background" />
       <header>
         <Link to="/">
           <div className="logo">

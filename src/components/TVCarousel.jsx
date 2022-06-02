@@ -51,13 +51,13 @@ export const TVCarousel = ({ continueToWatch, media, name }) => {
       >
         {media.map((media) => (
           <SwiperSlide onClick={() => playMedia(media.id)} key={media.id}>
-            <div className='media-container'>
-            <img src={require(`../assets/images/media/${media.images.small}.jpg`)} alt="movie-image" />
-            <video autoPlay src={media.url}></video>
+            {/* <div className='media-container'> */}
+            <img src={require(`../assets/images/media/${media.images.small}.jpg`)} alt="movie" />
+            {/* <video muted autoPlay src={media.url}></video>
             <div className='content'>
               asdasdasda
             </div>
-            </div>
+            </div> */}
           </SwiperSlide>
         ))}
       </Swiper>

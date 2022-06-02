@@ -64,7 +64,7 @@ export const WatchHeader = ({ profile }) => {
         </button>
         <div onMouseLeave={() => setIsOptionsShown(false)} onMouseOver={() => setIsOptionsShown(true)} className="profile-container">
           <div className="profile">
-            <img className="profile-image" src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile-image" />
+            <img className="profile-image" src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile-" />
             <span className="arrow"></span>
           </div>
           {isOptionsShown ? (
@@ -73,7 +73,7 @@ export const WatchHeader = ({ profile }) => {
                 {user.profiles.map((profile) => (
                   <li key={profile.name}>
                     <a onClick={() => onProfileChoose(profile)} key={profile.name}>
-                      <img className="profile-image" src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile-image" />
+                      <img className="profile-image" src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile" />
                       <p>{profile.name}</p>
                     </a>
                   </li>

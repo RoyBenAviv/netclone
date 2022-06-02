@@ -6,7 +6,7 @@ export const LoadingProfile = ({profile}) => {
         <div className="loading-profile">
         <div className='image-container'>
           <img className="loading-image" src={loading} alt="loading" />
-          {profile ?<img className="profile-image-loading" src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile-image" /> : ''}
+          {profile ?<img className="profile-image-loading" src={require(`../assets/images/profiles/${profile.image}.png`)} alt="profile" /> : ''}
         </div>
       </div>
     )
