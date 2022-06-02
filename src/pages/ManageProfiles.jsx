@@ -38,7 +38,7 @@ export const ManageProfiles = () => {
           ))}
           <li onClick={() => history.push('browse/add')}>
             <div className="add-profile-container">
-              <img className="add-profile-image" src={addProfileImg} alt="add-profile-image" />
+              <img className="add-profile-image" src={addProfileImg} alt="add-profile" />
               
             </div>
             <p>Add Profile</p>
