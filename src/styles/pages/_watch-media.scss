@@ -139,9 +139,16 @@
         .right-side {
           display: flex;
           gap: rem(40px);
+          @media (max-width: 800px) {
+            gap: rem(15px)
+          }
         }
         .middle {
           user-select: none;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: max-content;
           @media (min-width: 1400px) {
             font-size: rem(20px);
           }
@@ -229,6 +236,14 @@
           position: absolute;
           bottom: 92vh;
           left: 30px;
+          @media (max-width: 800px) {
+            width: 35px;
+            height: 35px;
+            svg {
+              width: 35px;
+              height: 35px;
+            }
+          }
         }
         button {
           background: none;
@@ -240,6 +255,13 @@
           transition: transform 0.1s ease-in-out;
           &:hover {
             transform: scale(1.2);
+          }
+          @media (max-width: 800px) {
+            width: 30px;
+            height: 30px;
+            svg {
+              width: 5vw;
+            }
           }
           .volume-high,
           .volume-medium,
