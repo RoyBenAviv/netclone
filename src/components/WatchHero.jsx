@@ -15,7 +15,7 @@ export const WatchHero = ({ continueToWatch, media }) => {
     <section className="watch-hero" style={{ backgroundImage: 'url(' + hero + ')' }}>
       <div className="hero-opacity"></div>
       <div className="inner-hero">
-        <img src={require(`../assets/images/hero/${media.images.logo}.webp`)} alt="media-logo" />
+        <img src={require(`../assets/images/logos/${media.images.logo}.png`)} alt="media-logo" />
         <p>{media.description}</p>
         <button onClick={() => playMedia(media.id)}>
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="Hawkins-Icon Hawkins-Icon-Standard">

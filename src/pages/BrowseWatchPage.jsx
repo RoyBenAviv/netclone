@@ -65,7 +65,10 @@ export const BrowseWatchPage = ({ match }) => {
   }
 
   const removeFromList = (mediaId) => {
-    console.log(mediaId)
+    const mediaIdx = profile.myList.findIndex(media => media.id === mediaId)
+    console.log('mediaIdx',mediaIdx);
+    profile.myList.splice(mediaIdx, 1)
+    userService.save(null, user)
   }
 
   const addToList = (mediaId) => {

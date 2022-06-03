@@ -67,6 +67,7 @@
       align-items: center;
       .media-image {
         width: 70%;
+        z-index: 1;
       }
       .number {
         margin-inline-end: -60px;
@@ -78,11 +79,14 @@
     .media-container {
       position: relative;
       &:hover {
+        z-index: 100;
         .content {
           transition-delay: 0.5s;
           transform: translateY(0);
           border-bottom-left-radius: 4px;
           border-bottom-right-radius: 4px;
+          opacity: 1;
+          pointer-events: all;
         }
       }
       .content {
@@ -94,8 +98,10 @@
         padding: rem(10px) rem(15px);
         background-color: $background2;
         transform: translateY(100%);
-        transition: all 0.3s;
+        transition: all 0.3s ease-in-out;
         border-top: 1px solid black;
+        opacity: 0;
+        pointer-events: none;
         @media (max-width: 1200px) {
           height: 60%;
         }
@@ -207,12 +213,14 @@
         }
       }
     }
-    img {
+    .media-image {
       border-radius: 4px;
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      z-index: -1;
+      position: relative;
     }
   }
 }

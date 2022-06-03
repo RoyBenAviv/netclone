@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper'
 import plusIcon from '../assets/images/plus.png'
@@ -8,8 +8,13 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import { useHistory } from 'react-router-dom'
+import { Route } from 'react-router-dom'
+import { MediaCardPage } from './MediaCardPage'
+
 export const TVCarousel = ({ profile, addToList, removeFromList, continueToWatch, media, name }) => {
   const history = useHistory()
+  // const [openCard, setOpenCard] = useState(null)
+
   const playMedia = (mediaId) => {
     continueToWatch(mediaId)
     history.push(`/watch/${mediaId}`)
@@ -24,6 +29,13 @@ export const TVCarousel = ({ profile, addToList, removeFromList, continueToWatch
     event.stopPropagation()
     removeFromList(mediaId)
   }
+
+  const openCard = (event, mediaId) => {
+        event.stopPropagation()
+        history.push(`/browse/${profile.id}/${mediaId}`)
+  }
+
+
   return (
     <section className="tv-carousel">
       <h2>{name}</h2>
@@ -64,7 +76,7 @@ export const TVCarousel = ({ profile, addToList, removeFromList, continueToWatch
         {media.map((media) => (
           <SwiperSlide onClick={() => playMedia(media.id)} key={media.id}>
             <div className="media-container">
-              <img src={require(`../assets/images/media/${media.images.small}.jpg`)} alt="movie" />
+              <img className='media-image' src={require(`../assets/images/media/${media.images.small}.jpg`)} alt="movie" />
               <div className="content">
                 <div className="actions">
                   <div className="left">
@@ -73,19 +85,18 @@ export const TVCarousel = ({ profile, addToList, removeFromList, continueToWatch
                         <path d="M4 2.69127C4 1.93067 4.81547 1.44851 5.48192 1.81506L22.4069 11.1238C23.0977 11.5037 23.0977 12.4963 22.4069 12.8762L5.48192 22.1849C4.81546 22.5515 4 22.0693 4 21.3087V2.69127Z" fill="currentColor"></path>
                       </svg>
                     </button>
-                    <div onClick={profile.myList.some(currMedia => currMedia.id === media.id) ? (event) => onRemoveFromList(event, media.id) : (event) => onAddToList(event, media.id)} className="add-container">
-                      <span className='tooltip'>{profile.myList.some(currMedia => currMedia.id === media.id) ? 'Remove from List' : 'Add to My List'}</span>
-                      <button className="add">
-                        {profile.myList.some(currMedia => currMedia.id === media.id) ? <img className='done' src={doneIcon} alt="done" /> : <img src={plusIcon} alt="plus" />}
-                      </button>
+                    <div onClick={profile.myList.some((currMedia) => currMedia.id === media.id) ? (event) => onRemoveFromList(event, media.id) : (event) => onAddToList(event, media.id)} className="add-container">
+                      <span className="tooltip">{profile.myList.some((currMedia) => currMedia.id === media.id) ? 'Remove from List' : 'Add to My List'}</span>
+                      <button className="add">{profile.myList.some((currMedia) => currMedia.id === media.id) ? <img className="done" src={doneIcon} alt="done" /> : <img src={plusIcon} alt="plus" />}</button>
                     </div>
                   </div>
                   <div className="right">
-                    <div className='info-container'>
-                    <span className='tooltip'>{'Episodes & info'}</span>
-                    <button className="info-btn">
-                      <img src={chevronIcon} alt="chevron" />
-                    </button>
+                    <div className="info-container">
+                      <span className="tooltip">{'Episodes & info'}</span>
+                      <button onClick={(event) => openCard(event, media.id)} className="info-btn">
+              
+                        <img src={chevronIcon} alt="chevron" />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -100,6 +111,9 @@ export const TVCarousel = ({ profile, addToList, removeFromList, continueToWatch
           </SwiperSlide>
         ))}
       </Swiper>
+        <Route path="/browse/:profileId/:mediaId" component={MediaCardPage} />
+
+        
     </section>
   )
 }
