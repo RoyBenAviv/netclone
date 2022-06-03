@@ -18,7 +18,7 @@
         height: 90%;
         background-color: $background2;
         .video-container {
-
+            cursor: pointer;
             position: relative;
             .background {
                 position: absolute;
@@ -26,10 +26,24 @@
                 height: 100%;
                 background: linear-gradient(to top,#181818,transparent 50%);
             }
+            .back {
+                @include flex;
+                position: absolute;
+                background-color: black;
+                border-radius: 50%;
+                top: 18px;
+                right: 15px;
+                color: white;
+                font-size: rem(16px);
+                width: 34px;
+                height: 34px;
+                cursor: pointer;
+                z-index: 110;
+            }
             .media-logo {
                 position: absolute;
-                width: 35%;
-                bottom: 40px;
+                width: 30%;
+                bottom: 60px;
                 left: 40px;
             }
             width: 100%;

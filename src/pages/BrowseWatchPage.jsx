@@ -21,6 +21,12 @@ export const BrowseWatchPage = ({ match }) => {
     loadTvShows()
   }, [])
 
+  const loadProfile = () => {
+    const id = match.params.id
+    const profile = user.profiles.find((profile) => profile.id === id)
+    setProfile(profile)
+  }
+
   const loadMovies = async () => {
     const movies = await movieService.query()
     setMovies(movies)
@@ -49,12 +55,6 @@ export const BrowseWatchPage = ({ match }) => {
 
   const getPopularTVShows = () => {
     return tvShows.filter((show) => show.isPopular === true)
-  }
-
-  const loadProfile = () => {
-    const id = match.params.id
-    const profile = user.profiles.find((profile) => profile.id === id)
-    setProfile(profile)
   }
 
   const continueToWatch = (mediaId) => {

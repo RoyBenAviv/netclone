@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper'
 import plusIcon from '../assets/images/plus.png'
@@ -13,7 +13,6 @@ import { MediaCardPage } from './MediaCardPage'
 
 export const TVCarousel = ({ profile, addToList, removeFromList, continueToWatch, media, name }) => {
   const history = useHistory()
-  // const [openCard, setOpenCard] = useState(null)
 
   const playMedia = (mediaId) => {
     continueToWatch(mediaId)
@@ -81,13 +80,13 @@ export const TVCarousel = ({ profile, addToList, removeFromList, continueToWatch
                 <div className="actions">
                   <div className="left">
                     <button onClick={() => playMedia(media.id)} className="play">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="Hawkins-Icon Hawkins-Icon-Standard">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="">
                         <path d="M4 2.69127C4 1.93067 4.81547 1.44851 5.48192 1.81506L22.4069 11.1238C23.0977 11.5037 23.0977 12.4963 22.4069 12.8762L5.48192 22.1849C4.81546 22.5515 4 22.0693 4 21.3087V2.69127Z" fill="currentColor"></path>
                       </svg>
                     </button>
                     <div onClick={profile.myList.some((currMedia) => currMedia.id === media.id) ? (event) => onRemoveFromList(event, media.id) : (event) => onAddToList(event, media.id)} className="add-container">
                       <span className="tooltip">{profile.myList.some((currMedia) => currMedia.id === media.id) ? 'Remove from List' : 'Add to My List'}</span>
-                      <button className="add">{profile.myList.some((currMedia) => currMedia.id === media.id) ? <img className="done" src={doneIcon} alt="done" /> : <img src={plusIcon} alt="plus" />}</button>
+                      <button className="add">{profile.myList.some((currMedia) => currMedia.id === media.id) ? <img className="done" src={doneIcon} alt="done" /> : <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="plus"><path fillRule="evenodd" clipRule="evenodd" d="M11 2V11H2V13H11V22H13V13H22V11H13V2H11Z" fill="currentColor"></path></svg>}</button>
                     </div>
                   </div>
                   <div className="right">
