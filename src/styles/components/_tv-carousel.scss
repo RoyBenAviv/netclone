@@ -121,6 +121,10 @@
             padding: rem(2px);
             @include flex;
             border-radius: 50%;
+            @media(max-width: 1200px) {
+              width: 35px;
+              height: 35px;
+            }
           }
           .play {
             svg {
@@ -207,8 +211,10 @@
             font-size: rem(14px);
           }
           .match {
-            color: rgb(62, 202, 62);
+            color: #46d369;
             font-size: rem(14px);
+            font-weight: 500;
+            white-space: nowrap;
           }
           .hd {
             font-size: rem(10px);

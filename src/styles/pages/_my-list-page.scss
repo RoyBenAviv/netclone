@@ -25,129 +25,7 @@
       width: 250px;
     }
     position: relative;
-    &:hover {
-      .content {
-        transition-delay: 0.5s;
-        transform: translateY(0);
-        border-bottom-left-radius: 4px;
-        border-bottom-right-radius: 4px;
-      }
-    }
-    .content {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 60%;
-      padding: rem(10px) rem(15px);
-      background-color: $background2;
-      transform: translateY(100%);
-      transition: all 0.3s;
-      border-top: 1px solid black;
-      
-      @media (max-width: 800px) {
-        display: none;
-      }
-      .actions {
-        @include flex(row, space-between);
-        .left,
-        .right {
-          @include flex;
-          gap: rem(8px);
-        }
-        button {
-          width: 40px;
-          height: 40px;
-          padding: rem(2px);
-          @include flex;
-          border-radius: 50%;
-        }
-        .play {
-          svg {
-            width: 24px;
-            height: 24px;
-            padding: 2px;
-            path {
-              width: 24px;
-              height: 24px;
-            }
-          }
-        }
-        .add-container,
-        .info-container {
-          position: relative;
-          &:hover {
-            span {
-              opacity: 1;
-            }
-          }
-          .tooltip {
-            border-radius: 4px;
-            position: absolute;
-            white-space: nowrap;
-            background-color: whitesmoke;
-            color: black;
-            transition: opacity 0.3s ease-in-out;
-            pointer-events: none;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: 600;
-            font-size: rem(14px);
-            bottom: 50px;
-            left: -40px;
-            padding: rem(5px) rem(10px);
-            opacity: 0;
-            &::before {
-              content: '';
-              position: absolute;
-              width: 10px;
-              height: 10px;
-              background-color: whitesmoke;
 
-              transform: rotate(45deg);
-              bottom: -5px;
-              left: 45%;
-              z-index: 200;
-              transition: opacity 0.5s;
-            }
-          }
-        }
-        .add,
-        .info-btn {
-          background-color: transparent;
-          border: 2px solid grey;
-          color: $text;
-          &:hover {
-            border-color: white;
-          }
-        }
-        .info-btn {
-          img {
-            width: 14px;
-            height: 14px;
-          }
-        }
-      }
-      .card-info {
-        margin-block-start: rem(8px);
-        @include flex(row, flex-start);
-        gap: rem(8px);
-        .age,
-        .hd {
-          border: 1px solid grey;
-          padding: 0 rem(3px);
-          font-size: rem(14px);
-        }
-        .match {
-          color: rgb(62, 202, 62);
-          font-size: rem(14px);
-        }
-        .hd {
-          font-size: rem(10px);
-          border-radius: 3px;
-        }
-      }
-    }
-  }
   img {
     border-radius: 4px;
     display: block;
@@ -155,4 +33,5 @@
     height: 100%;
     object-fit: cover;
   }
+}
 }

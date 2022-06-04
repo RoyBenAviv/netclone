@@ -1,7 +1,6 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper'
-import plusIcon from '../assets/images/plus.png'
 import chevronIcon from '../assets/images/chevron.png'
 import doneIcon from '../assets/images/v.png'
 import 'swiper/css'
@@ -32,6 +31,8 @@ export const TVCarousel = ({ profile, addToList, removeFromList, continueToWatch
   const openCard = (event, mediaId) => {
         event.stopPropagation()
         history.push(`/browse/${profile.id}/${mediaId}`)
+        document.querySelector('.browse-watch-page').classList.add('hide-scrollbar')
+        
   }
 
 
@@ -75,7 +76,7 @@ export const TVCarousel = ({ profile, addToList, removeFromList, continueToWatch
         {media.map((media) => (
           <SwiperSlide onClick={() => playMedia(media.id)} key={media.id}>
             <div className="media-container">
-              <img className='media-image' src={require(`../assets/images/media/${media.images.small}.jpg`)} alt="movie" />
+              <img className='media-image' src={require(`../assets/images/media/${media.images.small}.jpg`)} alt="media" />
               <div className="content">
                 <div className="actions">
                   <div className="left">

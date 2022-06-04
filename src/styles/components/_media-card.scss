@@ -2,6 +2,7 @@
     position: fixed;
     top: 50%;
     left: 50%;
+    overflow-y: auto;
     transform: translate(-50%, -50%);
     z-index: 130;
     width: 100%;
@@ -9,15 +10,28 @@
     display: flex;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.25);
-    transition: all 12s ease-in-out;
     .card {
-        margin-block-start: rem(30px);
+        position: absolute;
+        margin: rem(30px) 0;
         box-shadow: rgb(0 0 0 / 75%) 0px 3px 10px;
         border-radius: 6px;
-        width: 750px;
-        height: 90%;
-        background-color: $background2;
+        width: 1000px;
+       
+        @media(max-width: 1200px) {
+            width: 750px;
+        }
+        background-color: #181818;
         .video-container {
+            &.on-sound {
+                .mute-btn {
+                    .sound {
+                        display: block;
+                    }
+                    .mute {
+                        display: none;
+                    }
+                }
+            }
             cursor: pointer;
             position: relative;
             .background {
@@ -40,10 +54,47 @@
                 cursor: pointer;
                 z-index: 110;
             }
+            .mute-btn {
+                position: absolute;
+                @include flex;
+                width: 35px;
+                height: 35px;
+                right: 40px;
+                bottom: 45px;
+                border-width: 2px;
+                z-index: 112;
+                background-color: rgba(42,42,42,.6);
+                border: 2px solid  rgba(255,255,255,.5);
+                border-radius: 50%;
+                svg {
+                    color: rgba(255,255,255,.5);
+                    width: 20px;
+                    height: 20px;
+                }
+                .sound {
+                    display: none;
+
+                }
+            }
+            .play {
+                position: absolute;
+                @include white-button;
+                @include flex;
+                gap: rem(10px);
+                bottom: 45px;
+                left: 40px;
+                border: none;
+                border-radius: 4px;
+                letter-spacing: 0;
+                svg {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
             .media-logo {
                 position: absolute;
                 width: 30%;
-                bottom: 60px;
+                bottom: 120px;
                 left: 40px;
             }
             width: 100%;
@@ -51,7 +102,110 @@
                 border-top-left-radius: 6px;
                 border-top-right-radius: 6px;
                 width: 100%;
+                z-index: -1;
             }
         }
+        article {
+            user-select: none;
+            @include flex(row, space-between);
+            margin: rem(10px) rem(40px);
+            .bar-info {
+                @include flex(column, flex-start, flex-start);
+                gap: rem(30px);
+                div {
+                    @include flex(row, flex-start);
+                    gap: rem(8px);
+                }
+                .description {
+                    max-width: 600px;
+                    @media(max-width: 1200px) {
+                        max-width: 400px;
+
+                    }
+                    font-size: rem(14px);
+                }
+            }
+            .main-info {
+                max-width: 240px;
+                font-size: rem(14px);
+                span {
+                    margin-inline-end: rem(10px);
+                    color: #777;
+                }
+                .cast {
+                    display: flex;
+                    flex-wrap: wrap;
+                    line-height: 20px;
+                    li {
+                        margin-inline-end: rem(4px);
+                    }
+                }
+                .genre {
+                    margin-block-start: rem(14px);
+                }
+            }
+        }
+        .more {
+            margin: rem(10px) rem(40px);
+            padding-block-end: rem(20px);
+            h3 {
+                margin: rem(48px) 0 rem(20px) 0;
+                user-select: none
+            }
+            ul {
+                @include flex(row);
+                gap: rem(15px);
+                flex-wrap: wrap;
+                li {
+                    cursor: pointer;
+                    
+                    @include flex(column);
+                    .media-image {
+                        width: 250px;
+                        border-top-left-radius: 4px;
+                        border-top-right-radius: 4px;
+                    }
+                    .content {
+                        max-width: 250px;
+                        background-color: #2f2f2f;
+                        border-bottom-left-radius: 4px;
+                        border-bottom-right-radius: 4px;
+                        .top {
+                            margin: rem(30px) 0 rem(15px) rem(15px);
+                            .age {
+                                margin-inline-end: rem(10px);
+                            }
+                        }
+                        .description {
+                            @include flex;
+                            height: 100px;
+                            margin: 0 rem(15px) rem(30px) rem(15px);
+                            font-size: rem(14px);
+                            color: #d2d2d2;
+                            line-height: 1.5;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .age,
+    .hd {
+      border: 1px solid grey;
+      padding: 0 rem(3px);
+      font-size: rem(16px);
+      padding: rem(1px) rem(4px);
+    }
+    .match {
+      color: #46d369;
+      font-size: rem(16px);
+      font-weight: 700;
+    }
+    .hd {
+      font-size: rem(10px);
+      border-radius: 3px;
+    }
+    .release {
+        font-size: rem(16px);
     }
 }

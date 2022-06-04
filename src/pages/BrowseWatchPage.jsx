@@ -62,6 +62,7 @@ export const BrowseWatchPage = ({ match }) => {
     if (profile.continueToWatch.some(media => media.id === mediaId)) return
     profile.continueToWatch.unshift(media)
     userService.save(null, user)
+    
   }
 
   const removeFromList = (mediaId) => {

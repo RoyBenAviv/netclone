@@ -105,14 +105,5 @@
         }
       }
     }
-    .search {
-      background: none;
-      border: none;
-      color: inherit;
-      padding: 0;
-      @media (max-width: 600px) {
-        display: none;
-      }
-    }
   }
 }
