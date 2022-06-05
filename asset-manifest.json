@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/netclone/static/css/main.13f935cd.css",
-    "main.js": "/netclone/static/js/main.59666a00.js",
+    "main.js": "/netclone/static/js/main.096a25c9.js",
     "static/js/787.0904c1f0.chunk.js": "/netclone/static/js/787.0904c1f0.chunk.js",
     "static/media/stranger-things-hero.webp": "/netclone/static/media/stranger-things-hero.1fbd20e03c155ff71c6c.webp",
     "static/media/intro.mp4": "/netclone/static/media/intro.07935bdadcad0a91b662.mp4",
@@ -80,11 +80,11 @@
     "static/media/loading1.svg": "/netclone/static/media/loading1.f64e437216d045fd260d2b330a806257.svg",
     "static/media/loading.svg": "/netclone/static/media/loading.8f22934b9bab43f6f1c8f842829960aa.svg",
     "main.13f935cd.css.map": "/netclone/static/css/main.13f935cd.css.map",
-    "main.59666a00.js.map": "/netclone/static/js/main.59666a00.js.map",
+    "main.096a25c9.js.map": "/netclone/static/js/main.096a25c9.js.map",
     "787.0904c1f0.chunk.js.map": "/netclone/static/js/787.0904c1f0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.13f935cd.css",
-    "static/js/main.59666a00.js"
+    "static/js/main.096a25c9.js"
   ]
 }
