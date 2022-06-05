@@ -19,7 +19,7 @@
         window.addEventListener('load', async () => {
           const reg = await navigator.serviceWorker.register('%PUBLIC_URL%/serviceworker.js')
           try {
-            console.log('Success', reg.scope)
+            console.log('SW Registered', reg.scope)
           } catch (err) {
             console.error(err)
           }

@@ -11,7 +11,6 @@ import { ManageProfiles } from './pages/ManageProfiles'
 import { WatchMedia } from './pages/WatchMedia'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { Redirect } from 'react-router-dom'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 
 
@@ -27,8 +26,6 @@ export default function App() {
       <div className="App">
         <Router >
           <AuthProvider>
-            <TransitionGroup>
-              <CSSTransition timeout={{ enter: 300, exit: 300 }} classNames="fade" key={Route.path}>
                 <Switch>
                   <Route path="/login" component={LoginPage} />
                   <Route path="/signup" component={SignUpPage} />
@@ -40,8 +37,6 @@ export default function App() {
                   <PrivateRoute path="/ManageProfiles" component={ManageProfiles} />
                   <Route path="/" component={HomePage} />
                 </Switch>
-              </CSSTransition>
-            </TransitionGroup>
           </AuthProvider>
         </Router>
       </div>
