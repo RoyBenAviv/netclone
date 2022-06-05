@@ -1,14 +1,17 @@
 {
   "files": {
-    "main.css": "/netclone/static/css/main.aed8647d.css",
-    "main.js": "/netclone/static/js/main.6ca3cbce.js",
+    "main.css": "/netclone/static/css/main.cd6d5b66.css",
+    "main.js": "/netclone/static/js/main.67497a11.js",
     "static/js/787.0904c1f0.chunk.js": "/netclone/static/js/787.0904c1f0.chunk.js",
+    "static/media/stranger-things-hero.webp": "/netclone/static/media/stranger-things-hero.1fbd20e03c155ff71c6c.webp",
     "static/media/intro.mp4": "/netclone/static/media/intro.07935bdadcad0a91b662.mp4",
     "static/media/homepage-background.jpg": "/netclone/static/media/homepage-background.9430cac1998978d4cbb6.jpg",
     "static/media/the-shawshank-redemption-logo.png": "/netclone/static/media/the-shawshank-redemption-logo.dbe7521f9e0dca5457c8.png",
     "static/media/vikings-hero.webp": "/netclone/static/media/vikings-hero.59d201ec06dbc5fe7b83.webp",
+    "static/media/black-mirror-hero.webp": "/netclone/static/media/black-mirror-hero.2b659950454efb6fb18a.webp",
     "static/media/NetflixSansBold.ttf": "/netclone/static/media/NetflixSansBold.cea8acffd548be06c7c7.ttf",
     "static/media/NetflixSansRegular.ttf": "/netclone/static/media/NetflixSansRegular.31acc1edd781a074d7f9.ttf",
+    "static/media/queens-gambit-hero.webp": "/netclone/static/media/queens-gambit-hero.1e3891f6bc55e43799e6.webp",
     "static/media/device-pile.png": "/netclone/static/media/device-pile.8e6539e8bfc6937a0648.png",
     "static/media/the-dictator-logo.png": "/netclone/static/media/the-dictator-logo.98397d3e1e63dc6937f1.png",
     "static/media/rick-and-morty-medium.jpg": "/netclone/static/media/rick-and-morty-medium.cd42f7af7cabb9e6bb7d.jpg",
@@ -76,12 +79,12 @@
     "index.html": "/netclone/index.html",
     "static/media/loading1.svg": "/netclone/static/media/loading1.f64e437216d045fd260d2b330a806257.svg",
     "static/media/loading.svg": "/netclone/static/media/loading.8f22934b9bab43f6f1c8f842829960aa.svg",
-    "main.aed8647d.css.map": "/netclone/static/css/main.aed8647d.css.map",
-    "main.6ca3cbce.js.map": "/netclone/static/js/main.6ca3cbce.js.map",
+    "main.cd6d5b66.css.map": "/netclone/static/css/main.cd6d5b66.css.map",
+    "main.67497a11.js.map": "/netclone/static/js/main.67497a11.js.map",
     "787.0904c1f0.chunk.js.map": "/netclone/static/js/787.0904c1f0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.aed8647d.css",
-    "static/js/main.6ca3cbce.js"
+    "static/css/main.cd6d5b66.css",
+    "static/js/main.67497a11.js"
   ]
 }
