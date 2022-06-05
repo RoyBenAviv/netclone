@@ -4,30 +4,41 @@ import { useAuth } from '../contexts/AuthContext'
 import { movieService } from '../services/movies.service'
 import { tvShowsService } from '../services/tvshows.service'
 import { userService } from '../services/user.service'
+import useOnClickOutside from '../hooks/useOnClickOutside'
+
 
 export const MediaCardPage = ({ match }) => {
   const [profile, setProfile] = useState()
   const [media, setMedia] = useState()
   const [type, setType] = useState()
   const videoContainer = useRef()
+  const cardRef = useRef()
   const video = useRef()
   const history = useHistory()
   const { user } = useAuth()
+
 
   useEffect(() => {
     loadMedia()
     loadProfile()
     loadMedias()
   })
-
+  useOnClickOutside(cardRef, () => exit())
+  
   const loadMedias = async () => {
     const movies = await movieService.query()
     const shows = await tvShowsService.query()
     movies.some(movie => movie.id === media?.id) ? setType(movies) : setType(shows)
   }
 
+  const exit = () => {
+    history.push(`/browse/${profile?.id}`)
+    document.querySelector('.browse-watch-page').classList.remove('hide-scrollbar')
+  }
+
   const onBack = (event) => {
     event.stopPropagation()
+    document.querySelector('.browse-watch-page').classList.remove('hide-scrollbar')
     history.goBack()
   }
 
@@ -51,6 +62,7 @@ export const MediaCardPage = ({ match }) => {
     const media = medias.find((media) => media.id === match.params.mediaId)
     setMedia(media)
   }
+  
 
   const loadProfile = () => {
     const profile = user.profiles.find((profile) => profile.id === match.params.profileId)
@@ -68,7 +80,7 @@ export const MediaCardPage = ({ match }) => {
   if (!media && !type) return
   return (
     <section className="media-card">
-      <div className="card">
+      <div id='card' ref={cardRef} className="card">
         <div ref={videoContainer} onClick={() => playMedia(media.id)} className="video-container">
           <div className="background"></div>
           <button onClick={(event) => onBack(event)} className="back">
@@ -130,8 +142,8 @@ export const MediaCardPage = ({ match }) => {
         <div className='more'>
           <h3>More Like This</h3>
                 <ul>
-                  {type.map(currMedia => (
-                    currMedia.genre === media.genre && currMedia.id !== media.id ? <li onClick={() => playMedia(currMedia.id)}>
+                  {type?.map(currMedia => (
+                    currMedia.genre === media.genre && currMedia.id !== media.id ? <li key={currMedia.id} onClick={() => playMedia(currMedia.id)}>
                       <img className='media-image' src={require(`../assets/images/media/${currMedia.images.small}.jpg`)} alt="media" />
                       <div className="content">
                         <div className='top'>
