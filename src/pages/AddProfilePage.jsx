@@ -30,6 +30,8 @@ export const AddProfilePage = () => {
       id: utilService.makeId(),
       image: 5,
       name: inputRef.current.value,
+      myList: [],
+      continueToWatch: []
     })
     userService.save(null, user)
     setError('')

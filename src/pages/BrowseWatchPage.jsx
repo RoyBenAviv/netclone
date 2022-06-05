@@ -83,7 +83,7 @@ export const BrowseWatchPage = ({ match }) => {
   return (
     <section className="browse-watch-page">
       <WatchHeader profile={profile} />
-      <WatchHero continueToWatch={continueToWatch} media={tvShows[1]}/>
+      <WatchHero continueToWatch={continueToWatch} media={user.favoriteShow} profile={profile}/>
       <TVCarousel profile={profile} addToList={addToList} removeFromList={removeFromList} continueToWatch={continueToWatch} media={getTrendingMovies()} name="Trending Now" />
       {profile.continueToWatch.length ? <TVCarousel profile={profile} addToList={addToList} removeFromList={removeFromList} continueToWatch={continueToWatch} media={profile.continueToWatch} name={`Continue to watch for ${profile.name}`} /> : ''}
       <TVCarousel profile={profile} addToList={addToList} removeFromList={removeFromList} continueToWatch={continueToWatch}  media={getPopularTVShows()} name="Popular TV Shows" />

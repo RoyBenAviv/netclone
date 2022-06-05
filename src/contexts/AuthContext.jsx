@@ -13,15 +13,18 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState()
   const [loading, setLoading] = useState(true)
 
-  async function signup(name, email, password) {
+  async function signup(name, email, password, show) {
     const { user } = await createUserWithEmailAndPassword(firebaseService.auth, email, password)
     const userToSave = {
         email: user.email,
+        favoriteShow: show,
         profiles: [
           {
             id: utilService.makeId(),
             name,
-            image: Math.floor(Math.random() * 6) + 1  
+            image: Math.floor(Math.random() * 6) + 1,
+            myList: [],
+            continueToWatch: []
           }
         ]
       }

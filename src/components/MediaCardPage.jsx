@@ -137,7 +137,7 @@ export const MediaCardPage = ({ match }) => {
                         <div className='top'>
 
                         <span className='age'>{currMedia.age}+</span>
-                        <span className='release'>{currMedia.information.release}+</span>
+                        <span className='release'>{currMedia.information.release}</span>
                         </div>
                         <div className='description'>
                           {currMedia.information.description}

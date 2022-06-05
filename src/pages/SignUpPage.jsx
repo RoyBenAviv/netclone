@@ -1,29 +1,38 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import backgroundImg from '../assets/images/homepage-background.jpg'
 import loadingButtonImg from '../assets/images/loading.svg'
 import { VideoIntroPlayer } from '../components/VideoIntroPlayer'
+import { tvShowsService } from '../services/tvshows.service'
 
 export const SignUpPage = () => {
   const nameRef = useRef()
   const emailRef = useRef()
   const passwordRef = useRef()
+  const showRef = useRef()
   const passwordConfirmRef = useRef()
   const { signup } = useAuth()
   const [isLoading, setisLoading] = useState(false)
   const [error, setError] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [tvShows, setTvShows] = useState()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setisLoading(true)  
+    setisLoading(true)
     if (passwordConfirmRef.current.value !== passwordRef.current.value) return setError('Password do not match')
     try {
       setError('')
-      await signup(nameRef.current.value, emailRef.current.value, passwordRef.current.value)
+      if (!showRef.current.value) {
+        setError('You must choose tv show')
+        setisLoading(false)
+        return
+      }
+      const chosenShow = tvShows.find(show => show.id === showRef.current.value)
+      await signup(nameRef.current.value, emailRef.current.value, passwordRef.current.value, chosenShow)
       setIsLoggedIn(true)
-    } catch(err) {
+    } catch (err) {
       setError('Sorry, we failed to create an account. Please try again.')
       console.error(err)
     } finally {
@@ -31,7 +40,17 @@ export const SignUpPage = () => {
     }
   }
 
-  if(isLoggedIn) return <VideoIntroPlayer />
+  const loadTvShows = async () => {
+    const tvShows = await tvShowsService.query()
+    setTvShows(tvShows)
+  }
+
+  useEffect(() => {
+    loadTvShows()
+  }, [])
+
+  if (isLoggedIn) return <VideoIntroPlayer />
+  if (!tvShows) return
   return (
     <section className="login-page">
       <img className="background-img" src={backgroundImg} alt="background" />
@@ -50,7 +69,7 @@ export const SignUpPage = () => {
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <h3>Sign Up</h3>
-          {error && <div className='error'>{error}</div>}
+          {error && <div className="error">{error}</div>}
           <label>
             Name
             <input type="text" ref={nameRef} />
@@ -67,7 +86,12 @@ export const SignUpPage = () => {
             Confirm Password
             <input type="password" ref={passwordConfirmRef} />
           </label>
-
+          <select ref={showRef} id="shows" name="shows">
+            <option value='' selected disabled>Choose Your favorite show</option>
+            {tvShows.slice(0,4).map(show => (
+              <option key={show.id} value={show.id}>{show.name}</option>
+            ))}
+          </select>
           <button style={{ backgroundColor: isLoading ? '#e509146c' : '' }}>{isLoading ? <img src={loadingButtonImg} alt="loading" /> : 'Sign Up'}</button>
           <p>
             Already have an account? <Link to="/login">Login</Link>.

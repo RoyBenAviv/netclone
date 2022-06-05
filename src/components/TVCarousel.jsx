@@ -73,8 +73,8 @@ export const TVCarousel = ({ profile, addToList, removeFromList, continueToWatch
         modules={[Navigation]}
         className="mySwiper"
       >
-        {media.map((media) => (
-          <SwiperSlide onClick={() => playMedia(media.id)} key={media.id}>
+        {media.map((media, index) => (
+          <SwiperSlide onClick={() => playMedia(media.id)} key={`${media.id}_${index}`}>
             <div className="media-container">
               <img className='media-image' src={require(`../assets/images/media/${media.images.small}.jpg`)} alt="media" />
               <div className="content">

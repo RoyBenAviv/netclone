@@ -150,7 +150,9 @@
             padding-block-end: rem(20px);
             h3 {
                 margin: rem(48px) 0 rem(20px) 0;
-                user-select: none
+                user-select: none;
+                font-weight: 700;
+                 font-size: 24px;
             }
             ul {
                 @include flex(row);

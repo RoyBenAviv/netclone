@@ -41,22 +41,48 @@
                 display: none;
             }
         }
-        button {
-            @include white-button;
-            &:hover {
-                background-color: rgba(255, 255, 255, 0.8);
-                color: black
+        .actions {
+            button {
+                height: 50px;
+                @include flex;
+                padding: 0.6em 1.6em;
+                gap: rem(14px);
+                border-radius: 6px;
+                margin-block-start: 1.5vw;
+                @media (max-width: 1200px) {
+                    height: 40px;
+                }
+                @media(max-width: 560px) {
+                    font-size: 13px;
+                    padding: 2px 1.6em;
+                    svg {
+                        width: 13px;
+                    }
+                }
             }
-            @include flex;
-            padding: 0.6em 1.6em;
-            gap: rem(14px);
-            border-radius: 6px;
-            margin-block-start: 1.5vw;
-            @media(max-width: 560px) {
-                font-size: 13px;
-                padding: 2px 1.6em;
+            @include flex(row, flex-start);
+            gap: rem(10px);
+            .play {
+                @include white-button;
                 svg {
-                    width: 13px;
+                    width: 24px;
+                    height: 24px;
+                }
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.8);
+                    color: black;
+                }
+                @include flex;
+            }
+            .info {
+                color: white;
+                background-color: rgba(109, 109, 110, 0.7);
+                @include flex;
+                gap: rem(10px);
+                border: none;
+                font-size: 1.2vw;
+                @media(max-width: 800px) {
+                    display: none;
                 }
             }
         }
