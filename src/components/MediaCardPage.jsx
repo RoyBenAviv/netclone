@@ -22,6 +22,7 @@ export const MediaCardPage = ({ match }) => {
     loadMedia()
     loadProfile()
     loadMedias()
+    document.querySelector('.browse-watch-page').classList.add('hide-scrollbar')
   })
   useOnClickOutside(cardRef, () => exit())
   

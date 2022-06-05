@@ -30,9 +30,7 @@ export const TVCarousel = ({ profile, addToList, removeFromList, continueToWatch
 
   const openCard = (event, mediaId) => {
         event.stopPropagation()
-        history.push(`/browse/${profile.id}/${mediaId}`)
-        document.querySelector('.browse-watch-page').classList.add('hide-scrollbar')
-        
+        history.push(`/browse/${profile.id}/${mediaId}`)        
   }
 
 
