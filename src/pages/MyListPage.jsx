@@ -30,8 +30,6 @@ export const MyListPage = ({ match }) => {
       
       <h3>My List</h3>
       <div className='my-list-container'>
-
-      
       {profile.myList.map((media) => (
         <div key={media.id} className="media-container">
               <img onClick={() => playMedia(media.id)} className='media-image' src={require(`../assets/images/media/${media.images.small}.jpg`)} alt="movie" />
