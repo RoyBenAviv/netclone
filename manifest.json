@@ -2,7 +2,7 @@
     "theme_color": "#e50914",
     "background_color": "#000000",
     "display": "standalone",
-    "scope": "/",
+    "scope": "https://roybenaviv.github.io/netclone/",
     "start_url": "https://roybenaviv.github.io/netclone/",
     "name": "Netflix",
     "short_name": "Netflix",
@@ -11,8 +11,7 @@
         {
             "src": "favicon.ico",
             "sizes": "256x256",
-            "type": "image/ico",
-            "purpose": "any maskable"
+            "type": "image/ico"
         },
         {
             "src": "icon-192x192.png",
@@ -23,20 +22,17 @@
         {
             "src": "icon-256x256.png",
             "sizes": "256x256",
-            "type": "image/png",
-            "purpose": "any maskable"
+            "type": "image/png"
         },
         {
             "src": "icon-384x384.png",
             "sizes": "384x384",
-            "type": "image/png",
-            "purpose": "any maskable"
+            "type": "image/png"
         },
         {
             "src": "icon-512x512.png",
             "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "any maskable"
+            "type": "image/png"
         }
     ]
 }
