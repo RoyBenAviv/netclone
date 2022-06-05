@@ -24,6 +24,7 @@
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.8) 100%);
   @media(max-width: 740px) {
     background: black;
+    max-height: 100vh;
   }
   .background-img {
     min-height: 100vh;
@@ -41,10 +42,12 @@
   .form-container {
     height: 75vh;
     margin-block-end: rem(90px);
+
     form {
       @media(max-width: 740px) {
         width: 100vw;
-        height: 800px;
+        padding: rem(40px) rem(40px) 0 rem(40px);
+        height: 90vh;
       }
       h3 {
         align-self: flex-start;
@@ -62,7 +65,7 @@
       margin-block-end: 90px;
       background-color: rgba(0,0,0,.75);
       select {
-        height: 35px;
+        height: 50px;
         padding-block-end: rem(10px);
         &:focus {
           outline: none;
@@ -82,7 +85,9 @@
         padding-block-start: rem(10px);
         padding-inline-start: rem(20px);
         font-family: Arial, Helvetica, sans-serif;
-        
+        @media(max-width: 740px) {
+          margin-block-end: rem(20px);
+        }
         span {
           @include flex;
           position: absolute;
