@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { LoadingProfile } from './LoadingProfile.jsx'
+
 export const WatchHeader = ({ profile }) => {
   const { user, logout } = useAuth()
   const headerRef = useRef()
