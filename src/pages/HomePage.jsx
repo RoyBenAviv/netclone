@@ -17,7 +17,7 @@ export const HomePage = () => {
   const guestLogin = async () => {
     setisLoading(true) 
     try {
-      await login('guest@gmail.com', 'guest123')
+      await login(process.env.REACT_APP_USER_EMAIL, process.env.REACT_APP_USER_PASSWORD)
       setIsLoggedIn(true)
     } catch (err) {
       console.error(err)
