@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
 import introVideo from '../assets/videos/intro.mp4'
-import Lottie from 'react-lottie'
+import { Player } from "@lottiefiles/react-lottie-player";
 import animationData from '../assets/animations/netflix-animation.json'
 export const VideoIntroPlayer = () => {
   const videoRef = useRef()
@@ -22,13 +22,13 @@ export const VideoIntroPlayer = () => {
       
   }, [])
 
-  const getDefaultOptions = () => {
-    return {
-      loop: true,
-      autoplay: true,
-      animationData    
-    }
-  }
+  // const getDefaultOptions = () => {
+  //   return {
+  //     loop: true,
+  //     autoplay: true,
+  //     animationData    
+  //   }
+  // }
 
   return (
     <section className="video-intro-player">
@@ -37,7 +37,7 @@ export const VideoIntroPlayer = () => {
           <video ref={videoRef} playsInline>
             <source src={introVideo} type="video/mp4" />
           </video>
-        ) : <Lottie ref={animationRef} options={getDefaultOptions()} />}
+        ) : <Player ref={animationRef} autoplay src={animationData} />}
       </div>
     </section>
   )
