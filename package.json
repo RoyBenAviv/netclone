@@ -1,6 +1,6 @@
 {
   "name": "netflix",
-  "homepage": "https://roybenaviv.github.io/netclone",
+  "homepage": "https://netclone-roybenaviv.vercel.app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
