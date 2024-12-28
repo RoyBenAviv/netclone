@@ -105,7 +105,7 @@
               width: 2px;
               top: 0;
               bottom: 0;
-              right: calc((100% - 33px) - var(--preview-position) * 100%);
+              right: calc((100%) - var(--preview-position) * 100%);
               background-color: white;
               display: none;
             }
@@ -115,19 +115,19 @@
               left: 0;
               top: 0;
               bottom: 0;
-              right: calc((100% - 33px) - var(--progress-position) * 100%);
+              right: calc((100% ) - var(--progress-position) * 100%);
               background-color: $red;
             }
             .timeline-indicator {
               position: absolute;
               height: 400%;
               top: -150%;
-              right: calc((100% - 53px) - var(--progress-position) * 100%);
-              transform: translate(-50%);
+              right: calc((100% ) - var(--progress-position) * 100%);
               background-color: $red;
               border-radius: 50%;
               transition: transform 0.15s ease-in-out;
               aspect-ratio: 1/1;
+              z-index: 5;
             }
           }
         }
@@ -159,6 +159,7 @@
         }
         .playback-container {
           position: relative;
+          z-index: 10;
           &:hover {
             .playback-options {
               display: block;
